@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>My cheatsheet..</title>
+  <title>seed값을 알 때, PRNG을 깨는 경우 | My cheatsheet..</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="My cheatsheet..">
-<meta property="og:url" content="http://junoya77.github.io/index.html">
+  <meta name="description" content="[참고자료]">
+<meta name="keywords" content="random number generator">
+<meta property="og:type" content="article">
+<meta property="og:title" content="seed값을 알 때, PRNG을 깨는 경우">
+<meta property="og:url" content="http://junoya77.github.io/2017/06/13/random-number-gerator/index.html">
 <meta property="og:site_name" content="My cheatsheet..">
+<meta property="og:description" content="[참고자료]">
+<meta property="og:updated_time" content="2017-06-12T17:01:03.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My cheatsheet..">
+<meta name="twitter:title" content="seed값을 알 때, PRNG을 깨는 경우">
+<meta name="twitter:description" content="[참고자료]">
   
     <link rel="alternate" href="/atom.xml" title="My cheatsheet.." type="application/atom+xml">
   
@@ -72,9 +77,7 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-random-number-gerator" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-random-number-gerator" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/13/random-number-gerator/" class="article-date">
   <time datetime="2017-06-12T16:56:31.000Z" itemprop="datePublished">2017-06-13</time>
@@ -87,8 +90,8 @@ ga('send', 'pageview');
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/13/random-number-gerator/">seed값을 알 때, PRNG을 깨는 경우</a>
+    <h1 class="article-title" itemprop="name">
+      seed값을 알 때, PRNG을 깨는 경우
     </h1>
   
 
@@ -109,70 +112,19 @@ ga('send', 'pageview');
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-My-New-Post" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/08/My-New-Post/" class="article-date">
-  <time datetime="2017-06-07T15:03:42.000Z" itemprop="datePublished">2017-06-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/08/My-New-Post/">My New Post, git+hexo+google-analytics</a>
-    </h1>
+    <a href="/2017/06/08/My-New-Post/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">My New Post, git+hexo+google-analytics</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p><code>git + hexo</code> 를 사용하여 첫 블로그를 작성해 봅니다. </p>
-</li>
-<li><p><code>git + hexo</code> 구조에 블로그 방문 현황 모니터링을 위한 <strong>google-analytics</strong>를 추가했습니다.</p>
-<p><strong>google-analytics</strong>를 추가하는 방법은 아래와 같습니다.</p>
-<ul>
-<li><p>먼저 google analytics에 접속하여, URL 등 설정을 하여 아래와 같이 <strong>Tracking Id</strong>를 발급받습니다.</p>
-<p><img src="/images/2017-06-08/1.png" alt=""></p>
-</li>
-<li><p>저는 hexo 테마로 <strong>landscape</strong>를 사용했는데, <strong>landscape</strong> 테마에서는,<br><code>$HEXO_HOME/themes/landscape/_config.yml</code> 파일 내용을 수정하여 <strong>google-analytics</strong>를 추가할 수 있습니다.<br>(<code>$HEXO_HOME/_config.yml</code>이 아닙니다..)</p>
-<p>아래 그림에서와 같이 <code>google_analytics</code> 속성에 <strong>Tracking Id</strong>를 기입합니다.</p>
-<p><img src="/images/2017-06-08/2.png" alt=""></p>
-</li>
-<li><p>이제 블로그 업데이트를 합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate; hexo deploy</div></pre></td></tr></table></figure>
-</li>
-<li><p>이제 <strong>google-analytics</strong> 모니터링 사이트를 통해 블로그 방문 현황을 모니터링 할 수 있습니다.</p>
-<p> <img src="/images/2017-06-08/3.png" alt=""></p>
-</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/08/My-New-Post/" data-id="cj3udy6yz0001xgvkmky31htl" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google-analytics/">google-analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
 
 </section>
         
