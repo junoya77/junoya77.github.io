@@ -3,23 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>My New Post, git+hexo+google-analytics | My cheatsheet..</title>
+  <title>Tag: cracking | My cheatsheet..</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="git + hexo 를 사용하여 첫 블로그를 작성해 봅니다.   git + hexo 구조에 블로그 방문 현황 모니터링을 위한 google-analytics를 추가했습니다. google-analytics를 추가하는 방법은 아래와 같습니다.  먼저 google analytics에 접속하여, URL 등 설정을 하여 아래와 같이 Tracking Id를 발급받습니">
-<meta name="keywords" content="hexo,google-analytics">
-<meta property="og:type" content="article">
-<meta property="og:title" content="My New Post, git+hexo+google-analytics">
-<meta property="og:url" content="http://junoya77.github.io/2017/06/08/My-New-Post/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="My cheatsheet..">
+<meta property="og:url" content="http://junoya77.github.io/tags/cracking/index.html">
 <meta property="og:site_name" content="My cheatsheet..">
-<meta property="og:description" content="git + hexo 를 사용하여 첫 블로그를 작성해 봅니다.   git + hexo 구조에 블로그 방문 현황 모니터링을 위한 google-analytics를 추가했습니다. google-analytics를 추가하는 방법은 아래와 같습니다.  먼저 google analytics에 접속하여, URL 등 설정을 하여 아래와 같이 Tracking Id를 발급받습니">
-<meta property="og:image" content="http://junoya77.github.io/images/2017-06-08/1.png">
-<meta property="og:image" content="http://junoya77.github.io/images/2017-06-08/2.png">
-<meta property="og:image" content="http://junoya77.github.io/images/2017-06-08/3.png">
-<meta property="og:updated_time" content="2017-06-20T18:53:14.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My New Post, git+hexo+google-analytics">
-<meta name="twitter:description" content="git + hexo 를 사용하여 첫 블로그를 작성해 봅니다.   git + hexo 구조에 블로그 방문 현황 모니터링을 위한 google-analytics를 추가했습니다. google-analytics를 추가하는 방법은 아래와 같습니다.  먼저 google analytics에 접속하여, URL 등 설정을 하여 아래와 같이 Tracking Id를 발급받습니">
-<meta name="twitter:image" content="http://junoya77.github.io/images/2017-06-08/1.png">
+<meta name="twitter:title" content="My cheatsheet..">
   
     <link rel="alternate" href="/atom.xml" title="My cheatsheet.." type="application/atom+xml">
   
@@ -81,83 +72,39 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-My-New-Post" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/08/My-New-Post/" class="article-date">
-  <time datetime="2017-06-07T15:03:42.000Z" itemprop="datePublished">2017-06-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/etc/">etc.</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      My New Post, git+hexo+google-analytics
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2017/06/21/root-me-org-cracking-ELF-No-software-breakpoints-angr/" class="archive-article-date">
+  <time datetime="2017-06-20T18:49:37.000Z" itemprop="datePublished">Jun 21</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/06/21/root-me-org-cracking-ELF-No-software-breakpoints-angr/">root-me.org / cracking / ELF - No software breakpoints, +angr</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p><code>git + hexo</code> 를 사용하여 첫 블로그를 작성해 봅니다. </p>
-</li>
-<li><p><code>git + hexo</code> 구조에 블로그 방문 현황 모니터링을 위한 <strong>google-analytics</strong>를 추가했습니다.</p>
-<p><strong>google-analytics</strong>를 추가하는 방법은 아래와 같습니다.</p>
-<ul>
-<li><p>먼저 google analytics에 접속하여, URL 등 설정을 하여 아래와 같이 <strong>Tracking Id</strong>를 발급받습니다.</p>
-<p><img src="/images/2017-06-08/1.png" alt=""></p>
-</li>
-<li><p>저는 hexo 테마로 <strong>landscape</strong>를 사용했는데, <strong>landscape</strong> 테마에서는,<br><code>$HEXO_HOME/themes/landscape/_config.yml</code> 파일 내용을 수정하여 <strong>google-analytics</strong>를 추가할 수 있습니다.<br>(<code>$HEXO_HOME/_config.yml</code>이 아닙니다..)</p>
-<p>아래 그림에서와 같이 <code>google_analytics</code> 속성에 <strong>Tracking Id</strong>를 기입합니다.</p>
-<p><img src="/images/2017-06-08/2.png" alt=""></p>
-</li>
-<li><p>이제 블로그 업데이트를 합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate; hexo deploy</div></pre></td></tr></table></figure>
-</li>
-<li><p>이제 <strong>google-analytics</strong> 모니터링 사이트를 통해 블로그 방문 현황을 모니터링 할 수 있습니다.</p>
-<p> <img src="/images/2017-06-08/3.png" alt=""></p>
-</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/08/My-New-Post/" data-id="cj45xr7xn0000vsvkn8gg3cb2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google-analytics/">google-analytics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/06/13/random-number-gerator/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          seed값을 알 때, PRNG을 깨는 경우
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
 </section>
         
