@@ -3,14 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: blockchain | My cheatsheet..</title>
+  <title>create 1~F.jpg image from text | My cheatsheet..</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="My cheatsheet..">
-<meta property="og:url" content="http://junoya77.github.io/tags/blockchain/index.html">
+  <meta name="description" content="Create image(.jpg) file from text1$ convert -size 100x100 xc:white -pointsize 100 -fill black -annotate +20+80 1 1.jpg Generate 1~F character sequence1234567891011121314151617$ printf &quot;%x\n&quot; `seq 1 15">
+<meta name="keywords" content="convert">
+<meta property="og:type" content="article">
+<meta property="og:title" content="create 1~F.jpg image from text">
+<meta property="og:url" content="http://junoya77.github.io/2017/07/04/create-jpg-image-from-text/index.html">
 <meta property="og:site_name" content="My cheatsheet..">
+<meta property="og:description" content="Create image(.jpg) file from text1$ convert -size 100x100 xc:white -pointsize 100 -fill black -annotate +20+80 1 1.jpg Generate 1~F character sequence1234567891011121314151617$ printf &quot;%x\n&quot; `seq 1 15">
+<meta property="og:updated_time" content="2017-07-03T16:20:24.180Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My cheatsheet..">
+<meta name="twitter:title" content="create 1~F.jpg image from text">
+<meta name="twitter:description" content="Create image(.jpg) file from text1$ convert -size 100x100 xc:white -pointsize 100 -fill black -annotate +20+80 1 1.jpg Generate 1~F character sequence1234567891011121314151617$ printf &quot;%x\n&quot; `seq 1 15">
   
     <link rel="alternate" href="/atom.xml" title="My cheatsheet.." type="application/atom+xml">
   
@@ -72,39 +77,61 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/06/14/blockchain-s-data-size/" class="archive-article-date">
-  <time datetime="2017-06-14T11:33:05.000Z" itemprop="datePublished">Jun 14</time>
+        <section id="main"><article id="post-create-jpg-image-from-text" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/04/create-jpg-image-from-text/" class="article-date">
+  <time datetime="2017-07-03T16:00:10.000Z" itemprop="datePublished">2017-07-04</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/etc/">etc</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/14/blockchain-s-data-size/">blockchain&#39;s data size</a>
+    <h1 class="article-title" itemprop="name">
+      create 1~F.jpg image from text
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Create image(.jpg) file from text<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ convert -size 100x100 xc:white -pointsize 100 -fill black -annotate +20+80 1 1.jpg</div></pre></td></tr></table></figure></p>
+<p>Generate 1~F character sequence<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">printf</span> <span class="string">"%x\n"</span> `seq 1 15` | tr /a-z/ /A-Z/</div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">A</div><div class="line">B</div><div class="line">C</div><div class="line">D</div><div class="line">E</div><div class="line">F</div><div class="line">$</div></pre></td></tr></table></figure></p>
+<p>bash loop on 1~F characters<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> $(<span class="built_in">printf</span> <span class="string">"%x\n"</span> `seq 1 15` | tr /a-z/ /A-Z/); <span class="keyword">do</span> <span class="built_in">echo</span> test_<span class="variable">$i</span>; <span class="keyword">done</span></div><div class="line">test_1</div><div class="line">test_2</div><div class="line">test_3</div><div class="line">test_4</div><div class="line">test_5</div><div class="line">test_6</div><div class="line">test_7</div><div class="line">test_8</div><div class="line">test_9</div><div class="line">test_A</div><div class="line">test_B</div><div class="line">test_C</div><div class="line">test_D</div><div class="line">test_E</div><div class="line">test_F</div><div class="line">$</div></pre></td></tr></table></figure></p>
+<p>merge bash loop and convert<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> $(<span class="built_in">printf</span> <span class="string">"%x\n"</span> `seq 1 15` | tr /a-z/ /A-Z/); <span class="keyword">do</span> convert -size 100x100 xc:white -pointsize 100 -fill black -annotate +20+80 <span class="variable">$i</span> <span class="variable">$i</span>.jpg; <span class="keyword">done</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://junoya77.github.io/2017/07/04/create-jpg-image-from-text/" data-id="cj4ocr3g300049gvkcb6j4vmh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/convert/">convert</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/23/create-mach-o-execution-environment-on-kali/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">create mach-o execution environment on kali</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
