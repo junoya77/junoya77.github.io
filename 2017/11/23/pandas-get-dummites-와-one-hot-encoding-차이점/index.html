@@ -3,19 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Send CRLF as argument in bash | 학습노트</title>
+  <title>pandas.get_dummites()와 one-hot-encoding 차이점 | 학습노트</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1$ command  &quot;AAA&quot;$&apos;\r&apos;$&apos;\n&apos;&quot;BBB&quot; or1$ command  &quot;AAA&quot;$&apos;\r\n&apos;&quot;BBB&quot;">
-<meta name="keywords" content="bash,CRLF,CTF">
+  <meta name="description" content="pandas.get_dummies() 함수는,categorical variable을 dummy/indicator variable로 변환합니다.  참고 : https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html  그러면, dummy variable이란 무엇일까요? dummy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Send CRLF as argument in bash">
-<meta property="og:url" content="http://junoya77.github.io/2017/06/16/Send-CRLF-as-argument-in-bash/index.html">
+<meta property="og:title" content="pandas.get_dummites()와 one-hot-encoding 차이점">
+<meta property="og:url" content="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/index.html">
 <meta property="og:site_name" content="학습노트">
-<meta property="og:description" content="1$ command  &quot;AAA&quot;$&apos;\r&apos;$&apos;\n&apos;&quot;BBB&quot; or1$ command  &quot;AAA&quot;$&apos;\r\n&apos;&quot;BBB&quot;">
-<meta property="og:updated_time" content="2017-06-15T15:30:14.869Z">
+<meta property="og:description" content="pandas.get_dummies() 함수는,categorical variable을 dummy/indicator variable로 변환합니다.  참고 : https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html  그러면, dummy variable이란 무엇일까요? dummy">
+<meta property="og:updated_time" content="2017-11-22T17:34:18.218Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Send CRLF as argument in bash">
-<meta name="twitter:description" content="1$ command  &quot;AAA&quot;$&apos;\r&apos;$&apos;\n&apos;&quot;BBB&quot; or1$ command  &quot;AAA&quot;$&apos;\r\n&apos;&quot;BBB&quot;">
+<meta name="twitter:title" content="pandas.get_dummites()와 one-hot-encoding 차이점">
+<meta name="twitter:description" content="pandas.get_dummies() 함수는,categorical variable을 dummy/indicator variable로 변환합니다.  참고 : https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html  그러면, dummy variable이란 무엇일까요? dummy">
   
     <link rel="alternate" href="/atom.xml" title="학습노트" type="application/atom+xml">
   
@@ -77,14 +76,14 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Send-CRLF-as-argument-in-bash" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-pandas-get-dummites-와-one-hot-encoding-차이점" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/06/16/Send-CRLF-as-argument-in-bash/" class="article-date">
-  <time datetime="2017-06-15T15:26:24.000Z" itemprop="datePublished">2017-06-16</time>
+    <a href="/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" class="article-date">
+  <time datetime="2017-11-22T17:29:37.000Z" itemprop="datePublished">2017-11-23</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/offensive-security/">offensive security</a>
+    <a class="article-category-link" href="/categories/DS-ML/">DS/ML</a>
   </div>
 
   </div>
@@ -95,7 +94,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      Send CRLF as argument in bash
+      pandas.get_dummites()와 one-hot-encoding 차이점
     </h1>
   
 
@@ -103,36 +102,43 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">command</span>  <span class="string">"AAA"</span>$<span class="string">'\r'</span>$<span class="string">'\n'</span><span class="string">"BBB"</span></div></pre></td></tr></table></figure>
-<p>or<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">command</span>  <span class="string">"AAA"</span>$<span class="string">'\r\n'</span><span class="string">"BBB"</span></div></pre></td></tr></table></figure></p>
+        <p>pandas.get_dummies() 함수는,<br>categorical variable을 dummy/indicator variable로 변환합니다.</p>
+<ul>
+<li>참고 : <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html" target="_blank" rel="external">https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html</a></li>
+</ul>
+<p>그러면, dummy variable이란 무엇일까요?</p>
+<p>dummy variable은 indicator variable, design variable, boolean indicator, binary variable, qualitative variable이라고도 부른다고 합니다.</p>
+<p>dummy variable 이란,<br>숫자를 다루는 regression model이 categorical value도 숫자로 처리할 수 있도록,<br>categorical value의 각 값들에 대한 presence, absence를 1, 0으로 표시하여 만들어낸 variable입니다.</p>
+<p>예를 들어, 어떤 주택 매매가에 대한 regression model을 만들 때,<br>집이 동쪽(E)에 있는지, 동남쪽(SE)에 있는지, 북서쪽(NW)에 있는지 여부가 매매가에 영향을 준다고 하면,<br>(단, 이때, E, SE, NW 값은 categorical value이며 mutually exclusive 합니다.)</p>
+<p>아래와 같이 ‘E’/‘SE’/‘NW’라는 3가지 값을 가지는 category variable을 만들어 봅니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>loc = pd.Series([<span class="string">'E'</span>, <span class="string">'SE'</span>, <span class="string">'NW'</span>], dtype=<span class="string">'category'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>loc</div><div class="line"><span class="number">0</span>     E</div><div class="line"><span class="number">1</span>    SE</div><div class="line"><span class="number">2</span>    NW</div><div class="line">dtype: category</div><div class="line">Categories (<span class="number">3</span>, object): [E, NW, SE]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>이제, loc category variable로부터<br>pandas.get_dummies() 함수를 이용하여 dummy variable을 만들어 봅니다.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; pd.get_dummies(loc)</div><div class="line">     E   NW   SE</div><div class="line">0  1.0  0.0  0.0</div><div class="line">1  0.0  0.0  1.0</div><div class="line">2  0.0  1.0  0.0</div><div class="line">&gt;&gt;&gt; type(pd.get_dummies(loc))</div><div class="line">&lt;class 'pandas.core.frame.DataFrame'&gt;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>위에서 보면, ‘E’, ‘NW’, ‘SE’의 경우에 대해<br>presense는 ‘1’, absense는 ‘0’으로 표시되었음을 알 수 있습니다.</p>
+<p>이렇게 categorical variable을 dummy variable화 하면,<br>숫자만을 다루는 regression model에서도<br>categorical variable의 영향을 반영하여 modeling이 가능해집니다.</p>
+<ul>
+<li>참고 : <a href="https://www.moresteam.com/whitepapers/download/dummy-variables.pdf" target="_blank" rel="external">https://www.moresteam.com/whitepapers/download/dummy-variables.pdf</a></li>
+</ul>
+<p>그런데, “dummy variable trap”이란게 있다고 합니다.</p>
+<p>그리고, one-hot-encoding과 dummry variable의 차이에 대해서도 확인이 필요합니다…</p>
+<p>(수정중…)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/16/Send-CRLF-as-argument-in-bash/" data-id="cjabbwk5p0001f0vk2wc478qs" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjabbwk6s000mf0vkpoafu1sr" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CRLF/">CRLF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/06/16/install-ubuntu-arm-on-windows-with-qemu/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          create ARM binary reversing environment
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/06/14/blockchain-s-data-size/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/11/23/pandas-categorical-data-type-알아보기/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">blockchain&#39;s data size</div>
+      <div class="article-nav-title">pandas, categorical data type 알아보기</div>
     </a>
   
 </nav>
