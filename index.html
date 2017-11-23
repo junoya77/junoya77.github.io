@@ -92,7 +92,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/">pandas.get_dummites()와 one-hot-encoding 차이점</a>
+      <a class="article-title" href="/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/">pandas.get_dummies()와 one-hot-encoding의 차이점 [수정중]</a>
     </h1>
   
 
@@ -100,17 +100,17 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>pandas.get_dummies() 함수는,<br>categorical variable을 dummy/indicator variable로 변환합니다.</p>
+        <p><code>pandas.get_dummies()</code> 함수는 categorical variable을 dummy variable로 변환합니다.</p>
 <ul>
 <li>참고 : <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html" target="_blank" rel="external">https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html</a></li>
 </ul>
-<p>그러면, dummy variable이란 무엇일까요?</p>
-<p>dummy variable은 indicator variable, design variable, boolean indicator, binary variable, qualitative variable이라고도 부른다고 합니다.</p>
-<p>dummy variable 이란,<br>숫자를 다루는 regression model이 categorical value도 숫자로 처리할 수 있도록,<br>categorical value의 각 값들에 대한 presence, absence를 1, 0으로 표시하여 만들어낸 variable입니다.</p>
-<p>예를 들어, 어떤 주택 매매가에 대한 regression model을 만들 때,<br>집이 동쪽(E)에 있는지, 동남쪽(SE)에 있는지, 북서쪽(NW)에 있는지 여부가 매매가에 영향을 준다고 하면,<br>(단, 이때, E, SE, NW 값은 categorical value이며 mutually exclusive 합니다.)</p>
-<p>아래와 같이 ‘E’/‘SE’/‘NW’라는 3가지 값을 가지는 category variable을 만들어 봅니다.</p>
+<p>그러면, dummy variable 이란 무엇일까요?</p>
+<p>dummy variable은<br>indicator variable, design variable, boolean indicator,<br>binary variable, qualitative variable 이라고도 부른다고 합니다.</p>
+<p>dummy variable 이란,<br>숫자만을 다루는 regression model이<br>categorical value도 숫자로 처리할 수 있도록 해주기 위해,<br>categorical value의 각 값들에 대한 presence, absence를 1, 0으로 표시하는 방식으로<br>변환한 결과로 나타난 variable입니다.</p>
+<p>예를 들어,<br>어떤 주택 매매가에 대한 regression model을 만들 때,<br>집이 동쪽(E)에 있는지, 동남쪽(SE)에 있는지, 북서쪽(NW)에 있는지 여부가<br>매매가에 영향을 준다고 했을 때,<br>(단, 이때, E, SE, NW 값은 categorical value이며 mutually exclusive 합니다.)</p>
+<p>일단, 아래와 같이 ‘E’, ‘SE’, ‘NW’라는 3가지 값을 가지는 category variable을 만들어 봅니다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>loc = pd.Series([<span class="string">'E'</span>, <span class="string">'SE'</span>, <span class="string">'NW'</span>], dtype=<span class="string">'category'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>loc</div><div class="line"><span class="number">0</span>     E</div><div class="line"><span class="number">1</span>    SE</div><div class="line"><span class="number">2</span>    NW</div><div class="line">dtype: category</div><div class="line">Categories (<span class="number">3</span>, object): [E, NW, SE]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
-<p>이제, loc category variable로부터<br>pandas.get_dummies() 함수를 이용하여 dummy variable을 만들어 봅니다.</p>
+<p>이제, <code>loc</code> category variable으로부터<br><code>pandas.get_dummies()</code> 함수를 이용하여 dummy variable을 만들어 봅니다.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; pd.get_dummies(loc)</div><div class="line">     E   NW   SE</div><div class="line">0  1.0  0.0  0.0</div><div class="line">1  0.0  0.0  1.0</div><div class="line">2  0.0  1.0  0.0</div><div class="line">&gt;&gt;&gt; type(pd.get_dummies(loc))</div><div class="line">&lt;class 'pandas.core.frame.DataFrame'&gt;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
 <p>위에서 보면, ‘E’, ‘NW’, ‘SE’의 경우에 대해<br>presense는 ‘1’, absense는 ‘0’으로 표시되었음을 알 수 있습니다.</p>
 <p>이렇게 categorical variable을 dummy variable화 하면,<br>숫자만을 다루는 regression model에서도<br>categorical variable의 영향을 반영하여 modeling이 가능해집니다.</p>
@@ -124,7 +124,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjacoy0j3000hsgvk7memea8i" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjacp7uiv000h1cvkndotluo3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -206,7 +206,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjacoy0iv000bsgvkw5pjpysv" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjacp7uit000e1cvkyjaemjih" class="article-share-link">Share</a>
       
       
     </footer>
@@ -258,7 +258,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/이글루에서-다시-github-io로-돌아옴/" data-id="cjacoy0jn000xsgvkq46vb70c" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/이글루에서-다시-github-io로-돌아옴/" data-id="cjacp7uja000x1cvkfsy8wdex" class="article-share-link">Share</a>
       
       
     </footer>
@@ -346,7 +346,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/anaconda-사용법-간단히-익혀보기/" data-id="cjacoy0ij0004sgvku37hvb53" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/anaconda-사용법-간단히-익혀보기/" data-id="cjacp7uid00041cvkm6nb5xux" class="article-share-link">Share</a>
       
       
     </footer>
@@ -391,7 +391,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/07/04/install-build-fastcoll-md5-collision/" data-id="cjacoy0is0009sgvk1t7nr1ss" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/07/04/install-build-fastcoll-md5-collision/" data-id="cjacp7uik00061cvk22swy93s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/collision/">collision</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fastcoll/">fastcoll</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/md5/">md5</a></li></ul>
@@ -450,7 +450,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/07/04/create-jpg-image-from-text/" data-id="cjacoy0il0005sgvkecq5j0uq" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/07/04/create-jpg-image-from-text/" data-id="cjacp7uif00051cvky10c3w16" class="article-share-link">Share</a>
       
       
     </footer>
@@ -491,7 +491,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/23/create-mach-o-execution-environment-on-kali/" data-id="cjacoy0ip0006sgvks5hew85s" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/23/create-mach-o-execution-environment-on-kali/" data-id="cjacp7uin00091cvkrawwgtfq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mach-o/">mach-o</a></li></ul>
@@ -540,7 +540,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/23/root-me-org-cracking-ELF-ARM-basic-crackme-angr/" data-id="cjacoy0jb000osgvkqwt6pda1" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/23/root-me-org-cracking-ELF-ARM-basic-crackme-angr/" data-id="cjacp7uj1000o1cvkumukefoi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angr/">angr</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cracking/">cracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/root-me-org/">root-me.org</a></li></ul>
@@ -588,7 +588,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/21/root-me-org-cracking-ELF-No-software-breakpoints-angr/" data-id="cjacoy0jg000ssgvkqwdrav64" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/21/root-me-org-cracking-ELF-No-software-breakpoints-angr/" data-id="cjacp7uj4000s1cvkic9n3m2f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angr/">angr</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cracking/">cracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/root-me-org/">root-me.org</a></li></ul>
@@ -636,7 +636,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/16/install-ubuntu-arm-on-windows-with-qemu/" data-id="cjacoy0j1000esgvky5my346m" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/16/install-ubuntu-arm-on-windows-with-qemu/" data-id="cjacp7uiq000b1cvk7jgegpih" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arm/">arm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qemu/">qemu</a></li></ul>
@@ -684,7 +684,7 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/">pandas.get_dummites()와 one-hot-encoding 차이점</a>
+            <a href="/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/">pandas.get_dummies()와 one-hot-encoding의 차이점 [수정중]</a>
           </li>
         
           <li>

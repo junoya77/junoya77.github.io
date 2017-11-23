@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>pandas.get_dummites()와 one-hot-encoding 차이점 | 학습노트</title>
+  <title>pandas.get_dummies()와 one-hot-encoding의 차이점 [수정중] | 학습노트</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="pandas.get_dummies() 함수는,categorical variable을 dummy/indicator variable로 변환합니다.  참고 : https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html  그러면, dummy variable이란 무엇일까요? dummy">
+  <meta name="description" content="pandas.get_dummies() 함수는 categorical variable을 dummy variable로 변환합니다.  참고 : https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html  그러면, dummy variable 이란 무엇일까요? dummy variable">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pandas.get_dummites()와 one-hot-encoding 차이점">
+<meta property="og:title" content="pandas.get_dummies()와 one-hot-encoding의 차이점 [수정중]">
 <meta property="og:url" content="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/index.html">
 <meta property="og:site_name" content="학습노트">
-<meta property="og:description" content="pandas.get_dummies() 함수는,categorical variable을 dummy/indicator variable로 변환합니다.  참고 : https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html  그러면, dummy variable이란 무엇일까요? dummy">
-<meta property="og:updated_time" content="2017-11-22T17:34:18.218Z">
+<meta property="og:description" content="pandas.get_dummies() 함수는 categorical variable을 dummy variable로 변환합니다.  참고 : https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html  그러면, dummy variable 이란 무엇일까요? dummy variable">
+<meta property="og:updated_time" content="2017-11-23T16:34:43.982Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pandas.get_dummites()와 one-hot-encoding 차이점">
-<meta name="twitter:description" content="pandas.get_dummies() 함수는,categorical variable을 dummy/indicator variable로 변환합니다.  참고 : https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html  그러면, dummy variable이란 무엇일까요? dummy">
+<meta name="twitter:title" content="pandas.get_dummies()와 one-hot-encoding의 차이점 [수정중]">
+<meta name="twitter:description" content="pandas.get_dummies() 함수는 categorical variable을 dummy variable로 변환합니다.  참고 : https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html  그러면, dummy variable 이란 무엇일까요? dummy variable">
   
     <link rel="alternate" href="/atom.xml" title="학습노트" type="application/atom+xml">
   
@@ -94,7 +94,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      pandas.get_dummites()와 one-hot-encoding 차이점
+      pandas.get_dummies()와 one-hot-encoding의 차이점 [수정중]
     </h1>
   
 
@@ -102,17 +102,17 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>pandas.get_dummies() 함수는,<br>categorical variable을 dummy/indicator variable로 변환합니다.</p>
+        <p><code>pandas.get_dummies()</code> 함수는 categorical variable을 dummy variable로 변환합니다.</p>
 <ul>
 <li>참고 : <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html" target="_blank" rel="external">https://pandas.pydata.org/pandas-docs/stable/generated/pandas.get_dummies.html</a></li>
 </ul>
-<p>그러면, dummy variable이란 무엇일까요?</p>
-<p>dummy variable은 indicator variable, design variable, boolean indicator, binary variable, qualitative variable이라고도 부른다고 합니다.</p>
-<p>dummy variable 이란,<br>숫자를 다루는 regression model이 categorical value도 숫자로 처리할 수 있도록,<br>categorical value의 각 값들에 대한 presence, absence를 1, 0으로 표시하여 만들어낸 variable입니다.</p>
-<p>예를 들어, 어떤 주택 매매가에 대한 regression model을 만들 때,<br>집이 동쪽(E)에 있는지, 동남쪽(SE)에 있는지, 북서쪽(NW)에 있는지 여부가 매매가에 영향을 준다고 하면,<br>(단, 이때, E, SE, NW 값은 categorical value이며 mutually exclusive 합니다.)</p>
-<p>아래와 같이 ‘E’/‘SE’/‘NW’라는 3가지 값을 가지는 category variable을 만들어 봅니다.</p>
+<p>그러면, dummy variable 이란 무엇일까요?</p>
+<p>dummy variable은<br>indicator variable, design variable, boolean indicator,<br>binary variable, qualitative variable 이라고도 부른다고 합니다.</p>
+<p>dummy variable 이란,<br>숫자만을 다루는 regression model이<br>categorical value도 숫자로 처리할 수 있도록 해주기 위해,<br>categorical value의 각 값들에 대한 presence, absence를 1, 0으로 표시하는 방식으로<br>변환한 결과로 나타난 variable입니다.</p>
+<p>예를 들어,<br>어떤 주택 매매가에 대한 regression model을 만들 때,<br>집이 동쪽(E)에 있는지, 동남쪽(SE)에 있는지, 북서쪽(NW)에 있는지 여부가<br>매매가에 영향을 준다고 했을 때,<br>(단, 이때, E, SE, NW 값은 categorical value이며 mutually exclusive 합니다.)</p>
+<p>일단, 아래와 같이 ‘E’, ‘SE’, ‘NW’라는 3가지 값을 가지는 category variable을 만들어 봅니다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>loc = pd.Series([<span class="string">'E'</span>, <span class="string">'SE'</span>, <span class="string">'NW'</span>], dtype=<span class="string">'category'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>loc</div><div class="line"><span class="number">0</span>     E</div><div class="line"><span class="number">1</span>    SE</div><div class="line"><span class="number">2</span>    NW</div><div class="line">dtype: category</div><div class="line">Categories (<span class="number">3</span>, object): [E, NW, SE]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
-<p>이제, loc category variable로부터<br>pandas.get_dummies() 함수를 이용하여 dummy variable을 만들어 봅니다.</p>
+<p>이제, <code>loc</code> category variable으로부터<br><code>pandas.get_dummies()</code> 함수를 이용하여 dummy variable을 만들어 봅니다.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; pd.get_dummies(loc)</div><div class="line">     E   NW   SE</div><div class="line">0  1.0  0.0  0.0</div><div class="line">1  0.0  0.0  1.0</div><div class="line">2  0.0  1.0  0.0</div><div class="line">&gt;&gt;&gt; type(pd.get_dummies(loc))</div><div class="line">&lt;class 'pandas.core.frame.DataFrame'&gt;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
 <p>위에서 보면, ‘E’, ‘NW’, ‘SE’의 경우에 대해<br>presense는 ‘1’, absense는 ‘0’으로 표시되었음을 알 수 있습니다.</p>
 <p>이렇게 categorical variable을 dummy variable화 하면,<br>숫자만을 다루는 regression model에서도<br>categorical variable의 영향을 반영하여 modeling이 가능해집니다.</p>
@@ -126,7 +126,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjacoy0j3000hsgvk7memea8i" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjacp7uiv000h1cvkndotluo3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -177,7 +177,7 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/">pandas.get_dummites()와 one-hot-encoding 차이점</a>
+            <a href="/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/">pandas.get_dummies()와 one-hot-encoding의 차이점 [수정중]</a>
           </li>
         
           <li>
