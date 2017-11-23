@@ -124,7 +124,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjacqw840000grsvkiodmba85" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjacr2wwc000dccvkmvgjg21z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -207,7 +207,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjacqw83x000drsvki7yytbzi" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjacr2wwe000fccvkjcsd3nrk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -262,7 +262,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/이글루에서-다시-github-io로-돌아옴/" data-id="cjacqw84d000ursvkv8t6k19o" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/이글루에서-다시-github-io로-돌아옴/" data-id="cjacr2wwu000xccvky658p4uh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -350,7 +350,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/anaconda-사용법-간단히-익혀보기/" data-id="cjacqw83h0003rsvkfhzc4zoj" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/anaconda-사용법-간단히-익혀보기/" data-id="cjacr2wvt0003ccvk4xirlqm1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -367,7 +367,7 @@ ga('send', 'pageview');
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/offensive-security/">offensive security</a>
+    <a class="article-category-link" href="/categories/Security/">Security</a>
   </div>
 
   </div>
@@ -378,7 +378,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/04/install-build-fastcoll-md5-collision/">install/build fastcoll - md5 collision</a>
+      <a class="article-title" href="/2017/07/04/install-build-fastcoll-md5-collision/">fastcoll로 md5 collision 해보기</a>
     </h1>
   
 
@@ -386,20 +386,30 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>download fastcoll source code<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ wget http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5-1_source.zip</div></pre></td></tr></table></figure></p>
-<p>unzip zip file<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ unzip fastcoll_v1.0.0.5-1_source.zip</div></pre></td></tr></table></figure></p>
-<p>install boost dev package<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libboost-all-dev</div></pre></td></tr></table></figure></p>
-<p>build fastcoll source code<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ g++ -O3 *.cpp -lboost_filesystem -lboost_program_options -lboost_system -o fastcoll</div></pre></td></tr></table></figure></p>
-<p>test fastcoll’s operation<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$ ./fastcoll -o test1 test2</div><div class="line">MD5 collision generator v1.5</div><div class="line">by Marc Stevens (http://www.win.tue.nl/hashclash/)</div><div class="line"></div><div class="line">Using output filenames: <span class="string">'test1'</span> and <span class="string">'test2'</span></div><div class="line">Using initial value: 0123456789abcdeffedcba9876543210</div><div class="line"></div><div class="line">Generating first block: .</div><div class="line">Generating second block: S01....</div><div class="line">Running time: 0.08306 s</div><div class="line">$ cmp -l test1 test2 | wc</div><div class="line">      6      18      72</div><div class="line">$ md5sum test1 test2</div><div class="line">d4f4cbd8699701aded1dca2972d950d8  test1</div><div class="line">d4f4cbd8699701aded1dca2972d950d8  test2</div><div class="line">$</div></pre></td></tr></table></figure></p>
+        <p><code>fastcoll</code> 소스코드를 내려받습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ wget http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5-1_source.zip</div></pre></td></tr></table></figure>
+<p>zip 파일의 압축을 풉니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ unzip fastcoll_v1.0.0.5-1_source.zip</div></pre></td></tr></table></figure>
+<p><code>fastcoll</code> build에 필요한 <code>libboost-all-dev</code> package를 설치합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libboost-all-dev</div></pre></td></tr></table></figure>
+<p><code>fastcoll</code> 소스코드를 빌드합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ g++ -O3 *.cpp -lboost_filesystem -lboost_program_options -lboost_system -o fastcoll</div></pre></td></tr></table></figure>
+<p>이제 <code>fastcoll</code>로 md5 collision이 발생하는 2개의 파일 test1, test2를 생성해 봅니다.</p>
+<ul>
+<li>md5 collision : 서로 다른 내용의 2개의 파일이 md5 hash 값이 동일한 상황이 발생</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ./fastcoll -o test1 test2</div><div class="line">MD5 collision generator v1.5</div><div class="line">by Marc Stevens (http://www.win.tue.nl/hashclash/)</div><div class="line"></div><div class="line">Using output filenames: <span class="string">'test1'</span> and <span class="string">'test2'</span></div><div class="line">Using initial value: 0123456789abcdeffedcba9876543210</div><div class="line"></div><div class="line">Generating first block: .</div><div class="line">Generating second block: S01....</div><div class="line">Running time: 0.08306 s</div><div class="line">$</div></pre></td></tr></table></figure>
+<p><code>fastcoll</code>로 생성한 2개의 파일 내용을 비교해 보면 서로 내용에 차이가 있음을 알 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cmp -l test1 test2 | wc</div><div class="line">      6      18      72</div><div class="line">$</div></pre></td></tr></table></figure>
+<p>그러나 md5 hash 값은 동일합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ md5sum test1 test2</div><div class="line">d4f4cbd8699701aded1dca2972d950d8  test1</div><div class="line">d4f4cbd8699701aded1dca2972d950d8  test2</div><div class="line">$</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/07/04/install-build-fastcoll-md5-collision/" data-id="cjacqw83t000brsvkhwq9k6i3" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/07/04/install-build-fastcoll-md5-collision/" data-id="cjacr2ww30008ccvkiji54ebg" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/collision/">collision</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fastcoll/">fastcoll</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/md5/">md5</a></li></ul>
-
     </footer>
   </div>
   
@@ -454,7 +464,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/07/04/create-jpg-image-from-text/" data-id="cjacqw83j0005rsvkg1gehndf" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/07/04/create-jpg-image-from-text/" data-id="cjacr2wvw0005ccvkhyhlv7aq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -495,7 +505,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/23/create-mach-o-execution-environment-on-kali/" data-id="cjacqw83q0008rsvktep5j3yn" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/23/create-mach-o-execution-environment-on-kali/" data-id="cjacr2ww10006ccvk7jt4nqav" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mach-o/">mach-o</a></li></ul>
@@ -544,7 +554,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/23/root-me-org-cracking-ELF-ARM-basic-crackme-angr/" data-id="cjacqw847000mrsvkuihk5ur9" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/23/root-me-org-cracking-ELF-ARM-basic-crackme-angr/" data-id="cjacr2wwk000lccvk6v3kffqh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angr/">angr</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cracking/">cracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/root-me-org/">root-me.org</a></li></ul>
@@ -592,7 +602,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/21/root-me-org-cracking-ELF-No-software-breakpoints-angr/" data-id="cjacqw84a000qrsvkgyj30xmj" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/21/root-me-org-cracking-ELF-No-software-breakpoints-angr/" data-id="cjacr2wwn000pccvkrnycufq0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angr/">angr</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cracking/">cracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/root-me-org/">root-me.org</a></li></ul>
@@ -640,7 +650,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/16/install-ubuntu-arm-on-windows-with-qemu/" data-id="cjacqw83m0006rsvkpuo3r55q" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/16/install-ubuntu-arm-on-windows-with-qemu/" data-id="cjacr2ww6000bccvk8uyeawhb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arm/">arm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qemu/">qemu</a></li></ul>
@@ -665,7 +675,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/">CS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DS-ML/">DS/ML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/offensive-security/">offensive security</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/p2p-network/">p2p network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/">CS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DS-ML/">DS/ML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/offensive-security/">offensive security</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/p2p-network/">p2p network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -704,7 +714,7 @@ ga('send', 'pageview');
           </li>
         
           <li>
-            <a href="/2017/07/04/install-build-fastcoll-md5-collision/">install/build fastcoll - md5 collision</a>
+            <a href="/2017/07/04/install-build-fastcoll-md5-collision/">fastcoll로 md5 collision 해보기</a>
           </li>
         
       </ul>
