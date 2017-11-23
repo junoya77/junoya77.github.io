@@ -3,19 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>create ARM binary reversing environment | 학습노트</title>
+  <title>x86 머신에 ARM binary 리버싱 환경 만들기 | 학습노트</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="host : windows 10guest : virtualbox + linux  install123$ sudo apt-get install qemu binfmt-support qemu-user-static$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross$ sudo apt-get ins">
-<meta name="keywords" content="qemu,arm">
+  <meta name="description" content="x86 linux에서 qemu 및 gcc, gdb를 설치합니다. 123$ sudo apt-get install qemu binfmt-support qemu-user-static$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross$ sudo apt-get install gdb-multiar">
 <meta property="og:type" content="article">
-<meta property="og:title" content="create ARM binary reversing environment">
+<meta property="og:title" content="x86 머신에 ARM binary 리버싱 환경 만들기">
 <meta property="og:url" content="http://junoya77.github.io/2017/06/16/install-ubuntu-arm-on-windows-with-qemu/index.html">
 <meta property="og:site_name" content="학습노트">
-<meta property="og:description" content="host : windows 10guest : virtualbox + linux  install123$ sudo apt-get install qemu binfmt-support qemu-user-static$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross$ sudo apt-get ins">
-<meta property="og:updated_time" content="2017-06-20T18:48:06.923Z">
+<meta property="og:description" content="x86 linux에서 qemu 및 gcc, gdb를 설치합니다. 123$ sudo apt-get install qemu binfmt-support qemu-user-static$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross$ sudo apt-get install gdb-multiar">
+<meta property="og:updated_time" content="2017-11-23T17:34:09.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="create ARM binary reversing environment">
-<meta name="twitter:description" content="host : windows 10guest : virtualbox + linux  install123$ sudo apt-get install qemu binfmt-support qemu-user-static$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross$ sudo apt-get ins">
+<meta name="twitter:title" content="x86 머신에 ARM binary 리버싱 환경 만들기">
+<meta name="twitter:description" content="x86 linux에서 qemu 및 gcc, gdb를 설치합니다. 123$ sudo apt-get install qemu binfmt-support qemu-user-static$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross$ sudo apt-get install gdb-multiar">
   
     <link rel="alternate" href="/atom.xml" title="학습노트" type="application/atom+xml">
   
@@ -84,7 +83,7 @@ ga('send', 'pageview');
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/offensive-security/">offensive security</a>
+    <a class="article-category-link" href="/categories/Security/">Security</a>
   </div>
 
   </div>
@@ -95,7 +94,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      create ARM binary reversing environment
+      x86 머신에 ARM binary 리버싱 환경 만들기
     </h1>
   
 
@@ -103,21 +102,22 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>host : windows 10<br>guest : virtualbox + linux</p>
-<p> install<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install qemu binfmt-support qemu-user-static</div><div class="line">$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross</div><div class="line">$ sudo apt-get install gdb-multiarch</div></pre></td></tr></table></figure></p>
-<p>ARM binary execution<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ qemu-arm -L /usr/arm-linux-gnueabinhf/ ./target_arm_binary</div><div class="line">...executing...</div></pre></td></tr></table></figure></p>
-<p>ARM binary gdb debuggin</p>
-<p>[terminal 1]<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ qemu-arm-static -L /usr/arm-linux-gnueabinhf/ -g 55555 ./target_arm_binary</div></pre></td></tr></table></figure></p>
-<p>[terminal 2]<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ gdb-multiarch -q -nx</div><div class="line">(gdb) <span class="built_in">set</span> architecture arm</div><div class="line">(gdb) target remote :55555</div><div class="line">(gdb) i r</div><div class="line">(gdb) c</div></pre></td></tr></table></figure></p>
+        <p>x86 linux에서 <code>qemu</code> 및 <code>gcc</code>, <code>gdb</code>를 설치합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install qemu binfmt-support qemu-user-static</div><div class="line">$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross</div><div class="line">$ sudo apt-get install gdb-multiarch</div></pre></td></tr></table></figure>
+<p>이제 <code>qemu</code>를 이용하여 ARM용 binary를 실행해 봅니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ qemu-arm -L /usr/arm-linux-gnueabinhf/ ./target_arm_binary</div><div class="line">...executing...</div></pre></td></tr></table></figure>
+<p><code>qemu</code>를 이용하여 ARM binary에 <code>gdb</code>도 붙여 봅니다.<br>이때 2개의 terminal window가 필요하며,</p>
+<p>첫번째 terminal window에선<br>아래와 같이 <code>qemu</code>를 이용하여 <code>gdb-server</code>를 붙여 ARM binary를 실행시키고,</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ qemu-arm-static -L /usr/arm-linux-gnueabinhf/ -g 55555 ./target_arm_binary</div></pre></td></tr></table></figure>
+<p>두번째 terminal window에선<br>첫번째 terminal window에서 실행되고 있는 ARM binary에 <code>gdb</code> client를 연결합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ gdb-multiarch -q -nx</div><div class="line">(gdb) <span class="built_in">set</span> architecture arm</div><div class="line">(gdb) target remote :55555</div><div class="line">(gdb) i r</div><div class="line">(gdb) c</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/16/install-ubuntu-arm-on-windows-with-qemu/" data-id="cjacr2ww6000bccvk8uyeawhb" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/16/install-ubuntu-arm-on-windows-with-qemu/" data-id="cjacrcaym000bgovkpmtjkqc7" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arm/">arm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qemu/">qemu</a></li></ul>
-
     </footer>
   </div>
   
@@ -152,7 +152,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/">CS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DS-ML/">DS/ML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/offensive-security/">offensive security</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/p2p-network/">p2p network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/">CS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DS-ML/">DS/ML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/offensive-security/">offensive security</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/p2p-network/">p2p network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
