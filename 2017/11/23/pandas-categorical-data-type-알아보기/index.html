@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/index.html">
 <meta property="og:site_name" content="학습노트">
 <meta property="og:description" content="아래 링크의 내용을 나름대로 요약 정리해 보았습니다.  참고 : https://pandas.pydata.org/pandas-docs/stable/categorical.html  고정(제한)된 갯수의 값 중에 하나만을 가질 수 있는 변수(variable)의 data type이categorical data type이 됩니다. 여기서, “변수(variable)”">
-<meta property="og:updated_time" content="2017-11-23T16:50:48.454Z">
+<meta property="og:updated_time" content="2017-11-23T17:06:32.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="categorical data type 알아보기">
 <meta name="twitter:description" content="아래 링크의 내용을 나름대로 요약 정리해 보았습니다.  참고 : https://pandas.pydata.org/pandas-docs/stable/categorical.html  고정(제한)된 갯수의 값 중에 하나만을 가질 수 있는 변수(variable)의 data type이categorical data type이 됩니다. 여기서, “변수(variable)”">
@@ -123,7 +123,7 @@ ga('send', 'pageview');
 <p>그런데, 코드들이 likert scale 순서대로<br>‘very good’(0), ‘good’(1), ‘soso’(2), ‘bad’(3), ‘very bad’(4) 순이 되면 좋았을텐데,<br>‘bad’(0), ‘good’(1)’, ‘soso’(2), ‘very bad’(3), ‘very good’(4)로 되어 있어<br>categorical value들의 순서가 이상하게 되어 버렸습니다.</p>
 <p>원하는 순서대로 코드 재조정을 하려면,<br><code>reorder_categories()</code> 함수를 사용하면 됩니다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a1.cat.reorder_categories([<span class="string">'very good'</span>, <span class="string">'good'</span>, <span class="string">'soso'</span>, <span class="string">'bad'</span>, <span class="string">'very bad'</span>], inplace=<span class="keyword">True</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a1.cat.codes</div><div class="line"><span class="number">0</span>     <span class="number">0</span></div><div class="line"><span class="number">1</span>     <span class="number">1</span></div><div class="line"><span class="number">2</span>     <span class="number">2</span></div><div class="line"><span class="number">3</span>     <span class="number">3</span></div><div class="line"><span class="number">4</span>     <span class="number">4</span></div><div class="line"><span class="number">5</span>     <span class="number">0</span></div><div class="line"><span class="number">6</span>     <span class="number">1</span></div><div class="line"><span class="number">7</span>     <span class="number">3</span></div><div class="line"><span class="number">8</span>     <span class="number">3</span></div><div class="line"><span class="number">9</span>     <span class="number">3</span></div><div class="line"><span class="number">10</span>    <span class="number">1</span></div><div class="line">dtype: int8</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
-<p><code>reorder_categories()</code> 함수 호출 시,<br><code>inplace=True</code> 로 해주어야 a1의 내의 코드가 재부여 됩니다.</p>
+<p><code>reorder_categories()</code> 함수 호출 시,<br><code>inplace=True</code> 로 해주어야 <code>a1</code>의 내의 코드가 재부여 됩니다.</p>
 <p><code>inplace</code> option의 default 값은 <code>False</code>로,<br><code>False</code>인 경우는, 현재 다루어지고 있는 category variable data 자체는 변경하지 않고,<br>변경이 적용된 복사본을 return 한다고 합니다.</p>
 <ul>
 <li>참고 : <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.cat.reorder_categories.html" target="_blank" rel="external">https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.cat.reorder_categories.html</a></li>
@@ -149,7 +149,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjacq61q6000ecovklt6djyqr" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjacqh01s000emovksc6vgko0" class="article-share-link">Share</a>
       
       
     </footer>
