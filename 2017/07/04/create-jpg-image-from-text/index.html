@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://junoya77.github.io/2017/07/04/create-jpg-image-from-text/index.html">
 <meta property="og:site_name" content="학습노트">
 <meta property="og:description" content="POC||GTFO 0x14 내용을 보면,해당 PDF의 md5 hash값이 PDF 문서 내 이미지로 포함되어 있는 것을 볼 수 있습니다.  참조 : https://www.alchemistowl.org/pocorgtfo/pocorgtfo14.pdf  md5 collision을 이용한 듯 한데, 세부적인 내용은 잘 이해가 안가네요. 그것보단 앞서,이미지 형태로">
-<meta property="og:updated_time" content="2017-11-23T16:17:10.673Z">
+<meta property="og:updated_time" content="2017-11-23T17:11:53.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="한줄 명령어로 hex 값 jpg 이미지 파일 만들기">
 <meta name="twitter:description" content="POC||GTFO 0x14 내용을 보면,해당 PDF의 md5 hash값이 PDF 문서 내 이미지로 포함되어 있는 것을 볼 수 있습니다.  참조 : https://www.alchemistowl.org/pocorgtfo/pocorgtfo14.pdf  md5 collision을 이용한 듯 한데, 세부적인 내용은 잘 이해가 안가네요. 그것보단 앞서,이미지 형태로">
@@ -114,7 +114,7 @@ ga('send', 'pageview');
 <p><code>-size</code>는 jpg 이미지 크기를 지정하고,<br><code>xc:white</code>는 이미지의 배경을 흰색으로 하겠다는 의미이며,<br><code>-pointsize</code>는 펜굵기,<br><code>-fill black</code>은 펜 색깔을 검은색으로 하겠다는 것이고,<br><code>-annotate +20+80 1</code>은 20,80 위치에 1 이라는 text를 주석으로 write 하겠다는 의미입니다.</p>
 <p>위 명령을 1 ~ F 까지 값들에 각각 적용하기 위해,<br>1 ~ F 값들을 출력하는 명령어를 작성해 봅니다.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">printf</span> <span class="string">"%x\n"</span> `seq 1 15` | tr /a-z/ /A-Z/</div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">A</div><div class="line">B</div><div class="line">C</div><div class="line">D</div><div class="line">E</div><div class="line">F</div><div class="line">$</div></pre></td></tr></table></figure>
-<p><code>tr</code>은 <code>printf</code>의 <code>%x</code> 값이 소문자로 출력되어서, 이를 대문자로 변환하기 위해 사용했습니다.</p>
+<p><code>printf</code>의 <code>%x</code> 값이 소문자로 출력되어서 이를 대문자로 변환하기 위해 <code>tr</code>을 사용했습니다.</p>
 <p>1 ~ F 까지 출력하는 output을 가지고, for loop 처리가 가능한지 테스트 해 봅니다.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">for</span> i <span class="keyword">in</span> $(<span class="built_in">printf</span> <span class="string">"%x\n"</span> `seq 1 15` | tr /a-z/ /A-Z/); <span class="keyword">do</span> <span class="built_in">echo</span> test_<span class="variable">$i</span>; <span class="keyword">done</span></div><div class="line">test_1</div><div class="line">test_2</div><div class="line">test_3</div><div class="line">test_4</div><div class="line">test_5</div><div class="line">test_6</div><div class="line">test_7</div><div class="line">test_8</div><div class="line">test_9</div><div class="line">test_A</div><div class="line">test_B</div><div class="line">test_C</div><div class="line">test_D</div><div class="line">test_E</div><div class="line">test_F</div><div class="line">$</div></pre></td></tr></table></figure>
 <p>이제 위 두가지 명령어를 조합하여 1 ~ F 숫자를 text로 입력받아<br>각각을 jpg 이미지 파일로 생성합니다.</p>
@@ -123,7 +123,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/07/04/create-jpg-image-from-text/" data-id="cjacqh01k0009movkt79fsg5j" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/07/04/create-jpg-image-from-text/" data-id="cjacqjklg0005rovkjunu2rxi" class="article-share-link">Share</a>
       
       
     </footer>
