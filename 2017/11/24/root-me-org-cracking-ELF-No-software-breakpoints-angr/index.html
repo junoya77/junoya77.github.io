@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>x86 머신에 ARM binary 리버싱 환경 만들기 | 학습노트</title>
+  <title>[root-me.org] Cracking / ELF - No software breakpoints | 학습노트</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="x86 linux에서 qemu 및 gcc, gdb를 설치합니다. 123$ sudo apt-get install qemu binfmt-support qemu-user-static$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross$ sudo apt-get install gdb-multiar">
+  <meta name="description" content="angr를 이용하여 풀어봅니다. 먼저 angr를 설치합니다. 1$ pip install angr 분석 대상 binary 내에서angr를 통한 symbolic execution이 최종 도달해야 할 목표 지점을 어디인지를 찾아봅니다. 분석 대상 binary를 보니 “Well done man, use this pass to flag” 문자열이 눈에 띄네요.이 문">
 <meta property="og:type" content="article">
-<meta property="og:title" content="x86 머신에 ARM binary 리버싱 환경 만들기">
-<meta property="og:url" content="http://junoya77.github.io/2017/06/16/install-ubuntu-arm-on-windows-with-qemu/index.html">
+<meta property="og:title" content="[root-me.org] Cracking &#x2F; ELF - No software breakpoints">
+<meta property="og:url" content="http://junoya77.github.io/2017/11/24/root-me-org-cracking-ELF-No-software-breakpoints-angr/index.html">
 <meta property="og:site_name" content="학습노트">
-<meta property="og:description" content="x86 linux에서 qemu 및 gcc, gdb를 설치합니다. 123$ sudo apt-get install qemu binfmt-support qemu-user-static$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross$ sudo apt-get install gdb-multiar">
-<meta property="og:updated_time" content="2017-11-23T17:34:09.627Z">
+<meta property="og:description" content="angr를 이용하여 풀어봅니다. 먼저 angr를 설치합니다. 1$ pip install angr 분석 대상 binary 내에서angr를 통한 symbolic execution이 최종 도달해야 할 목표 지점을 어디인지를 찾아봅니다. 분석 대상 binary를 보니 “Well done man, use this pass to flag” 문자열이 눈에 띄네요.이 문">
+<meta property="og:updated_time" content="2017-11-23T18:11:59.825Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="x86 머신에 ARM binary 리버싱 환경 만들기">
-<meta name="twitter:description" content="x86 linux에서 qemu 및 gcc, gdb를 설치합니다. 123$ sudo apt-get install qemu binfmt-support qemu-user-static$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross$ sudo apt-get install gdb-multiar">
+<meta name="twitter:title" content="[root-me.org] Cracking &#x2F; ELF - No software breakpoints">
+<meta name="twitter:description" content="angr를 이용하여 풀어봅니다. 먼저 angr를 설치합니다. 1$ pip install angr 분석 대상 binary 내에서angr를 통한 symbolic execution이 최종 도달해야 할 목표 지점을 어디인지를 찾아봅니다. 분석 대상 binary를 보니 “Well done man, use this pass to flag” 문자열이 눈에 띄네요.이 문">
   
     <link rel="alternate" href="/atom.xml" title="학습노트" type="application/atom+xml">
   
@@ -76,10 +76,10 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-install-ubuntu-arm-on-windows-with-qemu" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-root-me-org-cracking-ELF-No-software-breakpoints-angr" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/06/16/install-ubuntu-arm-on-windows-with-qemu/" class="article-date">
-  <time datetime="2017-06-15T17:09:28.000Z" itemprop="datePublished">2017-06-16</time>
+    <a href="/2017/11/24/root-me-org-cracking-ELF-No-software-breakpoints-angr/" class="article-date">
+  <time datetime="2017-11-23T18:49:37.000Z" itemprop="datePublished">2017-11-24</time>
 </a>
     
   <div class="article-category">
@@ -94,7 +94,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      x86 머신에 ARM binary 리버싱 환경 만들기
+      [root-me.org] Cracking / ELF - No software breakpoints
     </h1>
   
 
@@ -102,20 +102,22 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>x86 linux에서 <code>qemu</code> 및 <code>gcc</code>, <code>gdb</code>를 설치합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install qemu binfmt-support qemu-user-static</div><div class="line">$ sudo apt-get install gcc-arm-linux-gnueabihf libc6-dev-armhf-cross</div><div class="line">$ sudo apt-get install gdb-multiarch</div></pre></td></tr></table></figure>
-<p>이제 <code>qemu</code>를 이용하여 ARM용 binary를 실행해 봅니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ qemu-arm -L /usr/arm-linux-gnueabinhf/ ./target_arm_binary</div><div class="line">...executing...</div></pre></td></tr></table></figure>
-<p><code>qemu</code>를 이용하여 ARM binary에 <code>gdb</code>도 붙여 봅니다.<br>이때 2개의 terminal window가 필요하며,</p>
-<p>첫번째 terminal window에선<br>아래와 같이 <code>qemu</code>를 이용하여 <code>gdb-server</code>를 붙여 ARM binary를 실행시키고,</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ qemu-arm-static -L /usr/arm-linux-gnueabinhf/ -g 55555 ./target_arm_binary</div></pre></td></tr></table></figure>
-<p>두번째 terminal window에선<br>첫번째 terminal window에서 실행되고 있는 ARM binary에 <code>gdb</code> client를 연결합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ gdb-multiarch -q -nx</div><div class="line">(gdb) <span class="built_in">set</span> architecture arm</div><div class="line">(gdb) target remote :55555</div><div class="line">(gdb) i r</div><div class="line">(gdb) c</div></pre></td></tr></table></figure>
+        <p><code>angr</code>를 이용하여 풀어봅니다.</p>
+<p>먼저 <code>angr</code>를 설치합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install angr</div></pre></td></tr></table></figure>
+<p>분석 대상 binary 내에서<br><code>angr</code>를 통한 symbolic execution이 최종 도달해야 할 목표 지점을 어디인지를 찾아봅니다.</p>
+<p>분석 대상 binary를 보니 “Well done man, use this pass to flag” 문자열이 눈에 띄네요.<br>이 문자열이 출려되는 지점이 목표 지점이 되겠습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ gdb -q ./ch20.bin</div><div class="line">(gdb) b *0x8048080</div><div class="line">(gdb) r</div><div class="line">...</div><div class="line">(gdb) x/s 0x8049124</div><div class="line">0x8049124:       <span class="string">"Well done man, use this pass to flag!\n...</span></div><div class="line">...</div><div class="line">(gdb)q</div></pre></td></tr></table></figure>
+<p><code>angr</code>를 이용하는 python script <code>a.py</code>를 작성합니다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> angr</div><div class="line"></div><div class="line">project = angr.Project(<span class="string">"ch20.bin"</span>, auto_load_libs=<span class="keyword">False</span>)</div><div class="line">path_group = project.factory.path_group()</div><div class="line">path_group.explore(find=<span class="keyword">lambda</span> path: <span class="string">'Well done man'</span> <span class="keyword">in</span> path.state.posix.dumps(<span class="number">1</span>))</div><div class="line"><span class="keyword">print</span> path_group.found[<span class="number">0</span>].state.posix.dumps(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<p><code>a.py</code>를 실행 해 봅니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ python a.py</div><div class="line">WARNING | ...</div><div class="line">XXXXXXXXXXXXXXXXXX  &lt;-- flag</div><div class="line">$</div></pre></td></tr></table></figure>
+<p>바로 flag가 찾아지네요.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/16/install-ubuntu-arm-on-windows-with-qemu/" data-id="cjacsoupo000bpwvkh141b0pc" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/24/root-me-org-cracking-ELF-No-software-breakpoints-angr/" data-id="cjacsoupv000hpwvkpcxnutsq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -124,19 +126,10 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2017/07/04/create-jpg-image-from-text/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          한줄 명령어로 hex 값 jpg 이미지 파일 만들기
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/06/16/Send-CRLF-as-argument-in-bash/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">bash에서 CRLF 값을 argument로 넘겨주기</div>
+      <div class="article-nav-title">pandas.get_dummies()와 one-hot-encoding의 차이점 [수정중]</div>
     </a>
   
 </nav>
