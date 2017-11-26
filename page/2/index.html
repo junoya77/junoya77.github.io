@@ -109,7 +109,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/16/Send-CRLF-as-argument-in-bash/" data-id="cjacss5g90001lcvkip4uh5u8" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/16/Send-CRLF-as-argument-in-bash/" data-id="cjah1gkd80003acvkvzqfmfvu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -137,7 +137,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/14/torrent-file-format/">torrent file format 분석해 보기 [수정중]</a>
+      <a class="article-title" href="/2017/06/14/torrent-file-format/">torrent file format 분석해 보기 (수정중)</a>
     </h1>
   
 
@@ -146,12 +146,63 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>utorrent에서 사용하는 ~.torrent 파일의 구조가 어떻게 되어 있는지 확인해 보겠습니다.</p>
-<p>(수정중)</p>
+<ul>
+<li>참고 : <a href="https://en.wikipedia.org/wiki/Torrent_file" target="_blank" rel="external">https://en.wikipedia.org/wiki/Torrent_file</a></li>
+</ul>
+<p>먼저,<br><code>bencode</code>란,<br>BitTorrent의 ~.torrent 파일에서 metadata를 기술하기 위해 사용하는<br>encoding 방법을 말합니다.</p>
+<ul>
+<li>참고 : <a href="https://en.wikipedia.org/wiki/Bencode" target="_blank" rel="external">https://en.wikipedia.org/wiki/Bencode</a></li>
+</ul>
+<p>정수는 “i&lt;숫자&gt;e”로 표현됩니다.</p>
+<ul>
+<li>42 =&gt; i42e</li>
+<li>0 =&gt; i0e</li>
+<li>-42 =&gt; i-42e</li>
+</ul>
+<p>string은 “<length>:<contents>“로 표현됩니다.</contents></length></p>
+<ul>
+<li>4:spam</li>
+</ul>
+<p>list는 “l<contents>e”로 표현됩니다.</contents></p>
+<ul>
+<li><code>spam</code>과 <code>42</code>로 구성된 list =&gt; l4:spami42ee</li>
+</ul>
+<p>dictionary는 “d<contents>e”로 표현됩니다.</contents></p>
+<ul>
+<li>{“bar”:”spam”, “foo”:42} 인 경우, =&gt; d3:bar4:spam3:fooi42ee</li>
+</ul>
+<p>~.torrent 파일은,<br>bencode 방식으로 인코딩 된 dictionary로 구성되어 있습니다.<br>dictionary이기 때문에, key:value로 표현되며,<br>아래와 같은 key를 가지고 있습니다.</p>
+<p><code>announce</code> : </p>
+<pre><code>- `tracker`의 URL 입니다.
+  * `tracker`란, 파일 전송을 하고 있는 `seed` peer를 
+    client가 잘 찾을 수 있도록 도와주는 서버를 말합니다. 
+</code></pre><p><code>info</code>:</p>
+<pre><code>- `files`:
+    - 공유되는 파일이 여러 개일 경우 사용됩니다.
+    - dictionary의 list이며, 
+    - 각 dictionary가 하나의 파일에 관한 정보을 가지고 있습니다.
+    - dictionary는 다음의 key를 가집니다.
+        - `length`:
+            - byte 단위의 파일 크기
+        `path`:
+            - subdirectory명 및 파일명으로 구성된 string의 list입니다.
+- `length`: 
+    - byte 단위의 파일 크기를 의미합니다. 공유되는 파일이 1개일 때만 사용됩니다.
+- `name`:
+    - 공유 파일이 1개일 경우, 파일이 저장될 때 파일명입니다.
+    - 공유 파일이 여러 개일 경우, 파일들이 저장될 디렉토리명입니다.
+- `piece length`:
+    - `piece`의 byte 단위 크기를 의미합니다.
+    - `piece`란 공유되고 있는 컨텐츠를 구성하는 하나의 조각을 의미합니다.
+    - 보통 262,144 B = 256 KB = 2^8 KB 입니다.
+- `pieces`:
+    - 각각의 `piece`들을 SHA-1 해시처리한 해시값들을 모아놓은 hash list 입니다.
+</code></pre><p>(수정중)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/14/torrent-file-format/" data-id="cjacss5h8000plcvk76tyvn5t" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/14/torrent-file-format/" data-id="cjah1gkdx000hacvkwppwwbb8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -195,7 +246,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/13/random-number-gerator/" data-id="cjacss5gy000glcvkywxtm1pi" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/13/random-number-gerator/" data-id="cjah1gkdu000facvkll9vx2bi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -250,7 +301,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/08/My-New-Post/" data-id="cjacss5g40000lcvkn2z0ltkc" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/08/My-New-Post/" data-id="cjah1gkcq0000acvkc1fekfb5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -296,7 +347,7 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/">pandas.get_dummies()와 one-hot-encoding의 차이점 [수정중]</a>
+            <a href="/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/">pandas.get_dummies()와 one-hot-encoding의 차이점 (수정중)</a>
           </li>
         
           <li>
