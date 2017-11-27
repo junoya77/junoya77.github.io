@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://junoya77.github.io/2017/06/14/torrent-file-format/index.html">
 <meta property="og:site_name" content="학습노트">
 <meta property="og:description" content="torrent에서 사용하는 ~.torrent 파일의 구조가 어떻게 되어 있는지 확인해 보겠습니다.  참고 : https://en.wikipedia.org/wiki/Torrent_file  ~.torrent 파일은 bencode 방식의 구조로 구성되어 있기에,먼저, bencode에 대해 알아봅니다. bencode란,BitTorrent의 ~.torrent 파일">
-<meta property="og:updated_time" content="2017-11-27T13:04:43.385Z">
+<meta property="og:updated_time" content="2017-11-27T13:08:54.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="torrent file format 분석해 보기 (수정중)">
 <meta name="twitter:description" content="torrent에서 사용하는 ~.torrent 파일의 구조가 어떻게 되어 있는지 확인해 보겠습니다.  참고 : https://en.wikipedia.org/wiki/Torrent_file  ~.torrent 파일은 bencode 방식의 구조로 구성되어 있기에,먼저, bencode에 대해 알아봅니다. bencode란,BitTorrent의 ~.torrent 파일">
@@ -131,41 +131,61 @@ ga('send', 'pageview');
 </ul>
 <p>~.torrent 파일은,<br>bencode 방식으로 인코딩 된 dictionary로 구성되어 있습니다.<br>dictionary이기 때문에, key:value로 표현되며,<br>아래와 같은 key를 가지고 있습니다.</p>
 <ul>
-<li><code>announce</code> : <ul>
-<li><code>tracker</code>의 URL 입니다.<ul>
+<li><p><code>announce</code> : </p>
+<ul>
+<li><code>tracker</code>의 URL 정보를 가집니다..<ul>
 <li><code>tracker</code>란, 파일 전송을 하고 있는 <code>seed</code> peer를<br>client가 잘 찾을 수 있도록 도와주는 서버를 말합니다. </li>
 </ul>
 </li>
 </ul>
 </li>
+<li><p><code>info</code>:</p>
+<ul>
+<li><code>files</code>:<ul>
+<li>공유되는 파일이 여러 개일 경우 사용됩니다.</li>
+<li>dictionary의 list 형태이며, </li>
+<li>각 dictionary가 하나의 파일에 관한 정보을 가지고 있습니다.</li>
+<li>dictionary는 다음의 key를 가집니다.<ul>
+<li><code>length</code>:<ul>
+<li>byte 단위의 파일 크기</li>
 </ul>
-<p><code>info</code>:</p>
-<pre><code>- `files`:
-    - 공유되는 파일이 여러 개일 경우 사용됩니다.
-    - dictionary의 list이며, 
-    - 각 dictionary가 하나의 파일에 관한 정보을 가지고 있습니다.
-    - dictionary는 다음의 key를 가집니다.
-        - `length`:
-            - byte 단위의 파일 크기
-        `path`:
-            - subdirectory명 및 파일명으로 구성된 string의 list입니다.
-- `length`: 
-    - byte 단위의 파일 크기를 의미합니다. 공유되는 파일이 1개일 때만 사용됩니다.
-- `name`:
-    - 공유 파일이 1개일 경우, 파일이 저장될 때 파일명입니다.
-    - 공유 파일이 여러 개일 경우, 파일들이 저장될 디렉토리명입니다.
-- `piece length`:
-    - `piece`의 byte 단위 크기를 의미합니다.
-    - `piece`란 공유되고 있는 컨텐츠를 구성하는 하나의 조각을 의미합니다.
-    - 보통 262,144 B = 256 KB = 2^8 KB 입니다.
-- `pieces`:
-    - 각각의 `piece`들을 SHA-1 해시처리한 해시값들을 모아놓은 hash list 입니다.
-</code></pre><p>(수정중)</p>
+</li>
+<li><code>path</code>:<ul>
+<li>subdirectory명 및 파일명으로 구성하는 string list입니다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>length</code>: <ul>
+<li>byte 단위의 파일 크기를 의미합니다. 공유되는 파일이 1개일 때만 사용됩니다.</li>
+</ul>
+</li>
+<li><code>name</code>:<ul>
+<li>공유 파일이 1개일 경우, 파일이 저장될 때 파일명입니다.</li>
+<li>공유 파일이 여러 개일 경우, 파일들이 저장될 디렉토리명입니다.</li>
+</ul>
+</li>
+<li><code>piece length</code>:<ul>
+<li><code>piece</code>의 byte 단위 크기를 의미합니다.</li>
+<li><code>piece</code>란 공유되고 있는 컨텐츠를 구성하는 하나의 조각을 의미합니다.</li>
+<li>보통 262,144 B = 256 KB = 2^8 KB 입니다.</li>
+</ul>
+</li>
+<li><code>pieces</code>:<ul>
+<li>각각의 <code>piece</code>들을 SHA-1 해시처리한 해시값들을 모아놓은 hash list 입니다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>(수정중)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/14/torrent-file-format/" data-id="cjai7h4zd000pw8vk59d2lpff" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/14/torrent-file-format/" data-id="cjai7mi8d000n18vka0fyrb3x" class="article-share-link">Share</a>
       
       
     </footer>
