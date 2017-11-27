@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://junoya77.github.io/2017/06/14/torrent-file-format/index.html">
 <meta property="og:site_name" content="학습노트">
 <meta property="og:description" content="torrent에서 사용하는 ~.torrent 파일의 구조가 어떻게 되어 있는지 확인해 보겠습니다.  참고 : https://en.wikipedia.org/wiki/Torrent_file  ~.torrent 파일은 bencode 방식의 구조로 구성되어 있기에,먼저, bencode에 대해 알아봅니다. bencode란,BitTorrent의 ~.torrent 파일">
-<meta property="og:updated_time" content="2017-11-27T13:00:21.656Z">
+<meta property="og:updated_time" content="2017-11-27T13:02:02.631Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="torrent file format 분석해 보기 (수정중)">
 <meta name="twitter:description" content="torrent에서 사용하는 ~.torrent 파일의 구조가 어떻게 되어 있는지 확인해 보겠습니다.  참고 : https://en.wikipedia.org/wiki/Torrent_file  ~.torrent 파일은 bencode 방식의 구조로 구성되어 있기에,먼저, bencode에 대해 알아봅니다. bencode란,BitTorrent의 ~.torrent 파일">
@@ -117,11 +117,11 @@ ga('send', 'pageview');
 <li>0 =&gt; i0e</li>
 <li>-42 =&gt; i-42e</li>
 </ul>
-<p>string은 “<length>:<contents>“로 표현됩니다.</contents></length></p>
+<p>string은 “&lt;length&gt;:&lt;contents&gt;”로 표현됩니다.</p>
 <ul>
 <li>4:spam</li>
 </ul>
-<p>list는 “l<contents>e”로 표현됩니다.</contents></p>
+<p>list는 “l&lt;contents&gt;e”로 표현됩니다.</p>
 <ul>
 <li><code>spam</code>과 <code>42</code>로 구성된 list =&gt; l4:spami42ee</li>
 </ul>
@@ -160,7 +160,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/14/torrent-file-format/" data-id="cjai7c0vq000ld0vkueqs1di5" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/14/torrent-file-format/" data-id="cjai7dp3v000ll8vkhs2308rj" class="article-share-link">Share</a>
       
       
     </footer>
