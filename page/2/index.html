@@ -109,7 +109,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/16/Send-CRLF-as-argument-in-bash/" data-id="cjaib89eo0001w0vkdymt4kmk" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/16/Send-CRLF-as-argument-in-bash/" data-id="cjaibd1j40001qwvkfzbn9xl3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -241,7 +241,7 @@ ga('send', 'pageview');
 <p>이어서 나오는 <code>l</code>은 list의 시작을 의미하며,<br>이어서 <code>l</code>이 또 나오기 때문에 list 내에 또 다른 list가 들어간 형태입니다.</p>
 <p>그리고 <code>32</code> 및 <code>http://9.rarbg.com:2710/announce</code>가 나오고,<br>이어서 <code>e</code>가 나오는데, 이는 list 종료를 의미합니다.</p>
 <p>따라서, 아래와 같은 형태가 됩니다.</p>
-<p>{<br>   <code>announce</code>:<code>http://9.rarbg.com:2710/announce</code>,<br>   <code>announce-list</code>:[<br>      [ <code>http://9.rarbg.com:2710/announce</code> ]<br>   ]<br>}</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">   <span class="string">'announce'</span>:<span class="string">'http://9.rarbg.com:2710/announce'</span>,</div><div class="line">   <span class="string">'announce-list'</span>:[ </div><div class="line">      [ <span class="string">'http://9.rarbg.com:2710/announce'</span> ] </div><div class="line">   ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>계속 이어서 <code>l</code> 및 <code>37</code>, <code>http://bttrack.9you.com:8080/announce</code>, <code>e</code>가 나옵니다.</p>
 <p>다시, 정리하면, 아래와 같이 됩니다.</p>
 <p>{<br>   <code>announce</code>:<code>http://9.rarbg.com:2710/announce</code>,<br>   <code>announce-list</code>:[<br>      [ <code>http://9.rarbg.com:2710/announce</code> ],<br>      [ <code>http://bttrack.9you.com:8080/announce</code> ]<br>   ]<br>}</p>
@@ -252,6 +252,8 @@ ga('send', 'pageview');
 <p>이어서, <code>7</code>, <code>comment</code>, <code>83</code>이 나오는데요.<br>아래와 같이 <code>comment</code> key:value가 추가됩니다.</p>
 <p>{<br>   <code>announce</code>:<code>http://9.rarbg.com:2710/announce</code>,<br>   <code>announce-list</code>:[<br>      [ <code>http://9.rarbg.com:2710/announce</code> ],<br>      [ <code>http://bttrack.9you.com:8080/announce</code> ],<br>      [ <code>http://denis.stalker.h3q.com/announce</code> ],<br>      [ <code>http://denis.stalker.h3q.com:80/announce</code> ],<br>      [ <code>http://denis.stalker.h3q.com:6969/announce</code> ],<br>      [ <code>http://denis.stalker.h3q.com:6969/announce.php</code> ],<br>      [ <code>http://exodus.desync.com:6969/announce</code> ],<br>      [ <code>http://genesis.1337x.org:1337/announce</code> ],<br>      [ <code>http://torrent-download.to:5869/announce</code> ],<br>      [ <code>http://tpb.tracker.prq.to/announce</code> ],<br>      [ <code>http://tpb.tracker.prq.to/announce.php</code> ],<br>      [ <code>http://tracker.bittorrent.am/announce</code> ],<br>      [ <code>http://tracker.bittorrent.am:80/announe</code> ],<br>      [ <code>http://tracker.prq.to/announce</code> ],<br>      [ <code>http://tracker.prq.to/announce.php</code> ],<br>      [ <code>http://tracker.prq.to:80/announce</code> ],<br>      [ <code>http://tracker.publicbits.com/announce</code> ],<br>      [ <code>http://tracker.publicbits.com/announce</code> ],<br>      [ <code>http://denis.stalker.h3q.com/announce</code> ]<br>   ],<br>   <code>comment</code>:``<br>}</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">00000370:  e298 85e2 9885 e298 85e2 9885 e298 85ec  :................</div><div class="line">00000380:  b59c eab0 95ed 86a0 eba0 8ced 8ab8 2deb  :..............-.</div><div class="line">00000390:  b3b4 eab3 a0eb b3b4 eab3 a028 6874 7470  :...........(http</div><div class="line">000003a0:  733a 2f2f 7777 772e 7a69 7062 6f67 6f2e  :s://www.zipbogo.</div><div class="line">000003b0:  6e65 7429 e298 85e2 9885 e298 85e2 9885  :net)............</div><div class="line">000003c0:  e298 8531 303a 6372 6561 7465 6420 6279  :...10:created by</div></pre></td></tr></table></figure>
+<p><code>comment</code>의 value는 83-byte의 아래 값에 해당합니다.</p>
+<p>{<br>   <code>announce</code>:<code>http://9.rarbg.com:2710/announce</code>,<br>   <code>announce-list</code>:[<br>      [ <code>http://9.rarbg.com:2710/announce</code> ],<br>      [ <code>http://bttrack.9you.com:8080/announce</code> ],<br>      [ <code>http://denis.stalker.h3q.com/announce</code> ],<br>      [ <code>http://denis.stalker.h3q.com:80/announce</code> ],<br>      [ <code>http://denis.stalker.h3q.com:6969/announce</code> ],<br>      [ <code>http://denis.stalker.h3q.com:6969/announce.php</code> ],<br>      [ <code>http://exodus.desync.com:6969/announce</code> ],<br>      [ <code>http://genesis.1337x.org:1337/announce</code> ],<br>      [ <code>http://torrent-download.to:5869/announce</code> ],<br>      [ <code>http://tpb.tracker.prq.to/announce</code> ],<br>      [ <code>http://tpb.tracker.prq.to/announce.php</code> ],<br>      [ <code>http://tracker.bittorrent.am/announce</code> ],<br>      [ <code>http://tracker.bittorrent.am:80/announe</code> ],<br>      [ <code>http://tracker.prq.to/announce</code> ],<br>      [ <code>http://tracker.prq.to/announce.php</code> ],<br>      [ <code>http://tracker.prq.to:80/announce</code> ],<br>      [ <code>http://tracker.publicbits.com/announce</code> ],<br>      [ <code>http://tracker.publicbits.com/announce</code> ],<br>      [ <code>http://denis.stalker.h3q.com/announce</code> ]<br>   ],<br>   <code>comment</code>:``<br>}</p>
 <p>000003d0:  3132 3aeb b3b4 eab3 a0eb b3b4 eab3 a031  :12:…………1<br>000003e0:  333a 6372 6561 7469 6f6e 2064 6174 6569  :3:creation datei<br>000003f0:  3135 3131 3636 3539 3334 6538 3a65 6e63  :1511665934e8:enc<br>00000400:  6f64 696e 6735 3a55 5446 2d38 343a 696e  :oding5:UTF-84:in<br>00000410:  666f 6436 3a6c 656e 6774 6869 3237 3534  :fod6:lengthi2754<br>00000420:  3637 3039 3935 6534 3a6e 616d 6537 383a  :670995e4:name78:<br>00000430:  e184 89e1 85b3 e184 86e1 85a5 e184 91e1  :…………….<br>00000440:  85b3 5f20 e184 87e1 85b5 e184 86e1 85b5  :.._ …………<br>00000450:  e186 afe1 848b e185 b4e1 8489 e185 aee1  :…………….<br>00000460:  8781 2032 3031 375f 3130 3830 705f 7832  :.. 2017_1080p_x2<br>00000470:  3634 5f61 6163 5f6b 6f72 2e6d 7034 3132  :64_aac_kor.mp412<br>00000480:  3a70 6965 6365 206c 656e 6774 6869 3230  ::piece lengthi20<br>00000490:  3937 3135 3265 363a 7069 6563 6573 3236  :97152e6:pieces26<br>000004a0:  3238 303a af62 c44c cc95 2c45 4222 407f  :280:.b.L..,EB”@.<br>000004b0:  087b 2100 1d52 83a4 2f8a 16f9 4dc4 f7b2  :.{!..R../…M…<br>000004c0:  1b84 a847 0e3a a03a d2d9 80d4 7e1d 0e3f  :…G.:.:….~..?<br>000004d0:  798e 8651 1dc5 3773 5a83 baca a054 fb4e  :y..Q..7sZ….T.N<br>000004e0:  6369 53b9 2ca8 6c8d a11d ec1a 4f5e cd81  :ciS.,.l…..O^..<br>000004f0:  1f8d fa6b 8f60 0bcd 7ebe 0c5e 5cec 0d67  :…k.<code>..~..^\..g
 00000500:  8a76 6bf2 7d45 3b06 d3d3 89e5 010b 1d99  :.vk.}E;.........
 00000510:  9b9c c3e6 66ee 9d11 8413 7ae3 17ee 414f  :....f.....z...AO
@@ -652,7 +654,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/14/torrent-file-format/" data-id="cjaib89gk000xw0vk8mc4noq6" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/14/torrent-file-format/" data-id="cjaibd1kd000wqwvkp8y650ox" class="article-share-link">Share</a>
       
       
     </footer>
@@ -696,7 +698,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/13/random-number-gerator/" data-id="cjaib89fa000dw0vk18y083oa" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/13/random-number-gerator/" data-id="cjaibd1ju000gqwvkoi5gvk9h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -751,7 +753,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/06/08/My-New-Post/" data-id="cjaib89ej0000w0vkhxjh0knj" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/06/08/My-New-Post/" data-id="cjaibd1iz0000qwvkat92bksq" class="article-share-link">Share</a>
       
       
     </footer>
