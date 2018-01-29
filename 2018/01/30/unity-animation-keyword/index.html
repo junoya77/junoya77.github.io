@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>torrent tracker와의 protocol 분석해 보기 (수정중) | 학습노트</title>
+  <title>[unity] 2D, 초간단 게임 만들기 | 학습노트</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="참고  http://www.bittorrent.org/beps/bep_0015.html    torrent swarm 내 각 peer들은 자신의 존재를 tracker에게 알린다고 합니다.이때 http 프로토콜을 사용하며, 다음 값들을 parameter로 보낸다고 합니다.  info_hash key peer_id port downloaded left upl">
+  <meta name="description" content="아래 youtube 강좌를 따라해 본다..Pluralsight.com의 unity 강좌를 듣다가.. 이렇게 어려운 수준부터 따라할려니 이해도 안되고,간단한 toy 수준의 완전히 동작하는 게임을 한번 만들어 보는게 중요한 경험이라 생각되어,초간단 unity 강좌를 인터넷에서 검색해 보니, 아래 좋은 동영상을 찾아냈다…무료 강의라서 그런지, 자세한 설명 없이">
 <meta property="og:type" content="article">
-<meta property="og:title" content="torrent tracker와의 protocol 분석해 보기 (수정중)">
-<meta property="og:url" content="http://junoya77.github.io/2017/11/28/torrent-tracker와의-protocol-분석해-보기-수정중/index.html">
+<meta property="og:title" content="[unity] 2D, 초간단 게임 만들기">
+<meta property="og:url" content="http://junoya77.github.io/2018/01/30/unity-animation-keyword/index.html">
 <meta property="og:site_name" content="학습노트">
-<meta property="og:description" content="참고  http://www.bittorrent.org/beps/bep_0015.html    torrent swarm 내 각 peer들은 자신의 존재를 tracker에게 알린다고 합니다.이때 http 프로토콜을 사용하며, 다음 값들을 parameter로 보낸다고 합니다.  info_hash key peer_id port downloaded left upl">
-<meta property="og:updated_time" content="2017-12-04T15:21:56.931Z">
+<meta property="og:description" content="아래 youtube 강좌를 따라해 본다..Pluralsight.com의 unity 강좌를 듣다가.. 이렇게 어려운 수준부터 따라할려니 이해도 안되고,간단한 toy 수준의 완전히 동작하는 게임을 한번 만들어 보는게 중요한 경험이라 생각되어,초간단 unity 강좌를 인터넷에서 검색해 보니, 아래 좋은 동영상을 찾아냈다…무료 강의라서 그런지, 자세한 설명 없이">
+<meta property="og:updated_time" content="2018-01-29T17:18:05.687Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="torrent tracker와의 protocol 분석해 보기 (수정중)">
-<meta name="twitter:description" content="참고  http://www.bittorrent.org/beps/bep_0015.html    torrent swarm 내 각 peer들은 자신의 존재를 tracker에게 알린다고 합니다.이때 http 프로토콜을 사용하며, 다음 값들을 parameter로 보낸다고 합니다.  info_hash key peer_id port downloaded left upl">
+<meta name="twitter:title" content="[unity] 2D, 초간단 게임 만들기">
+<meta name="twitter:description" content="아래 youtube 강좌를 따라해 본다..Pluralsight.com의 unity 강좌를 듣다가.. 이렇게 어려운 수준부터 따라할려니 이해도 안되고,간단한 toy 수준의 완전히 동작하는 게임을 한번 만들어 보는게 중요한 경험이라 생각되어,초간단 unity 강좌를 인터넷에서 검색해 보니, 아래 좋은 동영상을 찾아냈다…무료 강의라서 그런지, 자세한 설명 없이">
   
     <link rel="alternate" href="/atom.xml" title="학습노트" type="application/atom+xml">
   
@@ -76,14 +76,14 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-torrent-tracker와의-protocol-분석해-보기-수정중" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-unity-animation-keyword" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/11/28/torrent-tracker와의-protocol-분석해-보기-수정중/" class="article-date">
-  <time datetime="2017-11-27T16:27:57.000Z" itemprop="datePublished">2017-11-28</time>
+    <a href="/2018/01/30/unity-animation-keyword/" class="article-date">
+  <time datetime="2018-01-29T15:18:59.000Z" itemprop="datePublished">2018-01-30</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/CS/">CS</a>
+    <a class="article-category-link" href="/categories/Unity/">Unity</a>
   </div>
 
   </div>
@@ -94,7 +94,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      torrent tracker와의 protocol 분석해 보기 (수정중)
+      [unity] 2D, 초간단 게임 만들기
     </h1>
   
 
@@ -102,28 +102,14 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>참고 <ul>
-<li><a href="http://www.bittorrent.org/beps/bep_0015.html" target="_blank" rel="external">http://www.bittorrent.org/beps/bep_0015.html</a></li>
-</ul>
-</li>
-</ul>
-<p>torrent swarm 내 각 peer들은 자신의 존재를 tracker에게 알린다고 합니다.<br>이때 http 프로토콜을 사용하며, 다음 값들을 parameter로 보낸다고 합니다.</p>
-<ul>
-<li>info_hash</li>
-<li>key</li>
-<li>peer_id</li>
-<li>port</li>
-<li>downloaded</li>
-<li>left</li>
-<li>uploaded</li>
-<li>compact</li>
-</ul>
+        <p>아래 youtube 강좌를 따라해 본다..<br>Pluralsight.com의 unity 강좌를 듣다가.. 이렇게 어려운 수준부터 따라할려니 이해도 안되고,<br>간단한 toy 수준의 완전히 동작하는 게임을 한번 만들어 보는게 중요한 경험이라 생각되어,<br>초간단 unity 강좌를 인터넷에서 검색해 보니, 아래 좋은 동영상을 찾아냈다…<br>무료 강의라서 그런지, 자세한 설명 없이 엄청 빨리 진행하는 듯…</p>
+<p><a href="https://www.youtube.com/watch?v=FA5FrogqyBY" target="_blank" rel="external">https://www.youtube.com/watch?v=FA5FrogqyBY</a></p>
+<p>막상 따라해 보니…그리 초간단하지는 않고…<br>이런 간단한 게임도 많은 공수가 드는군..</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/28/torrent-tracker와의-protocol-분석해-보기-수정중/" data-id="cjd0h9rl2000nskvkqtua4i4h" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2018/01/30/unity-animation-keyword/" data-id="cjd0h9rky000lskvkh28h4vua" class="article-share-link">Share</a>
       
       
     </footer>
@@ -132,19 +118,10 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2017/12/23/what-is-ethereum/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          what is ethereum?
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/28/torrent-file-parsing-코드-분석-작성해-보기-수정중/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/12/23/what-is-ethereum/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">torrent file parsing 코드 분석/작성해 보기 (수정중)</div>
+      <div class="article-nav-title">what is ethereum?</div>
     </a>
   
 </nav>
