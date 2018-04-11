@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/index.html">
 <meta property="og:site_name" content="학습노트">
 <meta property="og:description" content="오랜만에 $ hexo generate; hex deploy를 해보니,아래와 같은 갑작스러운 에러가 발생했습니다. 12345678910111213141516171819202122...&amp;#123;생략&amp;#125;...fatal: HttpRequestException encountered.   ▒▒ ▒▒û▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒ ▒߻▒▒߽▒▒ϴ▒.b">
-<meta property="og:updated_time" content="2018-04-11T15:37:11.897Z">
+<meta property="og:updated_time" content="2018-04-11T15:42:09.146Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo deploy error,fatal: could not read Username for &#39;https:&#x2F;&#x2F;github.com&#39;">
 <meta name="twitter:description" content="오랜만에 $ hexo generate; hex deploy를 해보니,아래와 같은 갑작스러운 에러가 발생했습니다. 12345678910111213141516171819202122...&amp;#123;생략&amp;#125;...fatal: HttpRequestException encountered.   ▒▒ ▒▒û▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒ ▒߻▒▒߽▒▒ϴ▒.b">
@@ -124,12 +124,13 @@ ga('send', 'pageview');
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git version</div><div class="line">git version 2.17.0.windows.1</div><div class="line"></div><div class="line">$</div></pre></td></tr></table></figure>
 <p><code>~/.gitconfig</code> 파일의 내용을 보니, 2.17.0으로 업데이트 하기 전의<br>credential 설정이 여전이 남아 있는 듯 하여, credential 설정을 삭제한 후,<br><code>$ hexo generate; hexo deploy</code>를 실행한 결과, 깔끔하게 잘 실행되었습니다.</p>
 <p>그래서, 결론은,<br>ssh 설정, <code>git config --global credential.helper wincred</code>와 같은 수정이 아닌, </p>
-<p>그냥 git을 업데이트하면 되는 이슈였고,<br>(원인 github 서버 쪽에서 weak encryption 지원 중단으로 인한 것으로 보임)<br>git 업데이트를 자주 해야 겠네요..</p>
+<p>그냥 git을 업데이트하면 되는 이슈였고,<br>문제의 원인은 github 서버 쪽에서 weak encryption 지원을 중단하면서,<br>git client 프로그램과의 어떤(?) 충돌로 인한 것으로 보이며,<br>위에서 언급되었던 솔루션들은 이러한 어떤(?) 충돌을 보완해 주는 효과를 주어<br>문제를 해결했었던 것으로 보입니다.</p>
+<p>git 업데이트를 자주 해야 겠네요..</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" data-id="cjfv9d6os0007j8vkjn5b2yur" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" data-id="cjfv9k2s80007l8vktxr7tbdz" class="article-share-link">Share</a>
       
       
     </footer>

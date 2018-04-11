@@ -122,12 +122,13 @@ ga('send', 'pageview');
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git version</div><div class="line">git version 2.17.0.windows.1</div><div class="line"></div><div class="line">$</div></pre></td></tr></table></figure>
 <p><code>~/.gitconfig</code> 파일의 내용을 보니, 2.17.0으로 업데이트 하기 전의<br>credential 설정이 여전이 남아 있는 듯 하여, credential 설정을 삭제한 후,<br><code>$ hexo generate; hexo deploy</code>를 실행한 결과, 깔끔하게 잘 실행되었습니다.</p>
 <p>그래서, 결론은,<br>ssh 설정, <code>git config --global credential.helper wincred</code>와 같은 수정이 아닌, </p>
-<p>그냥 git을 업데이트하면 되는 이슈였고,<br>(원인 github 서버 쪽에서 weak encryption 지원 중단으로 인한 것으로 보임)<br>git 업데이트를 자주 해야 겠네요..</p>
+<p>그냥 git을 업데이트하면 되는 이슈였고,<br>문제의 원인은 github 서버 쪽에서 weak encryption 지원을 중단하면서,<br>git client 프로그램과의 어떤(?) 충돌로 인한 것으로 보이며,<br>위에서 언급되었던 솔루션들은 이러한 어떤(?) 충돌을 보완해 주는 효과를 주어<br>문제를 해결했었던 것으로 보입니다.</p>
+<p>git 업데이트를 자주 해야 겠네요..</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" data-id="cjfv9d6os0007j8vkjn5b2yur" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" data-id="cjfv9k2s80007l8vktxr7tbdz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -184,7 +185,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2018/01/30/unity-animation-keyword/" data-id="cjfv9d6pp000xj8vkryguobrp" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2018/01/30/unity-animation-keyword/" data-id="cjfv9k2t9000yl8vklbpq62xd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -251,7 +252,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/12/23/what-is-ethereum/" data-id="cjfv9d6po000vj8vkt16d5uik" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/12/23/what-is-ethereum/" data-id="cjfv9k2t5000wl8vkp8521gck" class="article-share-link">Share</a>
       
       
     </footer>
@@ -308,7 +309,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/28/torrent-tracker와의-protocol-분석해-보기-수정중/" data-id="cjfv9d6pl000tj8vkkmvw0mot" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/28/torrent-tracker와의-protocol-분석해-보기-수정중/" data-id="cjfv9k2t3000ul8vkmi6xdzt3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -354,7 +355,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/28/torrent-file-parsing-코드-분석-작성해-보기-수정중/" data-id="cjfv9d6pj000rj8vkna5r6f3g" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/28/torrent-file-parsing-코드-분석-작성해-보기-수정중/" data-id="cjfv9k2sy000ql8vkwy2h6eoy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -417,7 +418,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjfv9d6p6000gj8vkziec5st4" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjfv9k2sm000gl8vkrixcf7ic" class="article-share-link">Share</a>
       
       
     </footer>
@@ -500,7 +501,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjfv9d6p2000dj8vk7w48e0dl" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjfv9k2sk000dl8vkxwsbxc95" class="article-share-link">Share</a>
       
       
     </footer>
@@ -556,7 +557,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/이글루에서-다시-github-io로-돌아옴/" data-id="cjfv9d6px000zj8vkvof6t9g2" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/이글루에서-다시-github-io로-돌아옴/" data-id="cjfv9k2tb0010l8vkuwus1ced" class="article-share-link">Share</a>
       
       
     </footer>
@@ -644,7 +645,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/anaconda-사용법-간단히-익혀보기/" data-id="cjfv9d6oi0003j8vkm77xnd7d" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/anaconda-사용법-간단히-익혀보기/" data-id="cjfv9k2ry0004l8vkkxx7vqbc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -701,7 +702,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/07/04/install-build-fastcoll-md5-collision/" data-id="cjfv9d6ov0009j8vkj1mo6l7u" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/07/04/install-build-fastcoll-md5-collision/" data-id="cjfv9k2sc0009l8vkyrusmdq1" class="article-share-link">Share</a>
       
       
     </footer>
