@@ -74,6 +74,73 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-openssl-분석을-위한-환경-갖추기" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/12/openssl-분석을-위한-환경-갖추기/" class="article-date">
+  <time datetime="2018-04-11T15:48:27.000Z" itemprop="datePublished">2018-04-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Security/">Security</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/12/openssl-분석을-위한-환경-갖추기/">openssl 분석을 위한 환경 갖추기</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>openssl 내부적으로 </p>
+<ul>
+<li>TLS 프로토콜을 어떻게 처리하는지, </li>
+<li>certificate verfication은 어떻게 처리하는지, </li>
+<li>session key는 어떻게 생성, 처리되고 있는지 등을 조사해보려면, </li>
+</ul>
+<p>openssl 소스코드 내에 몇가지 debug 코드를 삽입해 보면서 진행하면 좋을 텐데요.  </p>
+<p>이를 위해 Windows 10, WSL(Windows Subsystem for Linux) 환경에서<br>openssl 빌드 환경을 만들어 보겠습니다.</p>
+<p>아래 링크 내용을 먼저 참조해 봅니다.<br><a href="https://wiki.openssl.org/index.php/Compilation_and_Installation" target="_blank" rel="external">https://wiki.openssl.org/index.php/Compilation_and_Installation</a></p>
+<p>openssl 소스코드도 github에서 관리되고 있어,<br><code>git clone</code>으로 소스코드를 local machine으로 복제합니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/openssl/openssl.git</div><div class="line"><span class="string">'openssl'</span>에 복제합니다...</div><div class="line">remote: Counting objects: 296915, <span class="keyword">done</span>.</div><div class="line">remote: Compressing objects: 100% (59/59), <span class="keyword">done</span>.</div><div class="line">remote: Total 296915 (delta 36), reused 44 (delta 24), pack-reused 296832</div><div class="line">오브젝트를 받는 중: 100% (296915/296915), 141.74 MiB | 4.97 MiB/s, 완료.</div><div class="line">델타를 알아내는 중: 100% (208274/208274), 완료.</div><div class="line">연결을 확인하는 중입니다... 완료.</div><div class="line">파일을 가져옵니다: 100% (18595/18595), 완료.</div><div class="line">$</div><div class="line">$ <span class="built_in">cd</span> openssl</div><div class="line">$ ls -al</div><div class="line">합계 525038</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 .</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:55 ..</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 .git</div><div class="line">-rwxrwxrwx 1 root root     50  4월 12 00:56 .gitattributes</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:56 .github</div><div class="line">-rwxrwxrwx 1 root root   2948  4월 12 00:56 .gitignore</div><div class="line">-rwxrwxrwx 1 root root    270  4월 12 00:56 .gitmodules</div><div class="line">-rwxrwxrwx 1 root root    256  4월 12 00:56 .travis-apt-pin.preferences</div><div class="line">-rwxrwxrwx 1 root root    257  4월 12 00:56 .travis-create-release.sh</div><div class="line">-rwxrwxrwx 1 root root   8719  4월 12 00:56 .travis.yml</div><div class="line">-rwxrwxrwx 1 root root     87  4월 12 00:56 ACKNOWLEDGEMENTS</div><div class="line">-rwxrwxrwx 1 root root    362  4월 12 00:56 AUTHORS</div><div class="line">-rwxrwxrwx 1 root root 561654  4월 12 00:56 CHANGES</div><div class="line">-rwxrwxrwx 1 root root   2644  4월 12 00:56 CONTRIBUTING</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:56 Configurations</div><div class="line">-rwxrwxrwx 1 root root 114711  4월 12 00:56 Configure</div><div class="line">-rwxrwxrwx 1 root root     84  4월 12 00:56 FAQ</div><div class="line">-rwxrwxrwx 1 root root  53177  4월 12 00:56 INSTALL</div><div class="line">-rwxrwxrwx 1 root root   6128  4월 12 00:56 LICENSE</div><div class="line">-rwxrwxrwx 1 root root  38645  4월 12 00:56 NEWS</div><div class="line">-rwxrwxrwx 1 root root   3226  4월 12 00:56 NOTES.ANDROID</div><div class="line">-rwxrwxrwx 1 root root   2095  4월 12 00:56 NOTES.DJGPP</div><div class="line">-rwxrwxrwx 1 root root   4580  4월 12 00:56 NOTES.PERL</div><div class="line">-rwxrwxrwx 1 root root   1804  4월 12 00:56 NOTES.UNIX</div><div class="line">-rwxrwxrwx 1 root root   3659  4월 12 00:56 NOTES.VMS</div><div class="line">-rwxrwxrwx 1 root root   6912  4월 12 00:56 NOTES.WIN</div><div class="line">-rwxrwxrwx 1 root root   3154  4월 12 00:56 README</div><div class="line">-rwxrwxrwx 1 root root   3552  4월 12 00:56 README.ECC</div><div class="line">-rwxrwxrwx 1 root root  16069  4월 12 00:56 README.ENGINE</div><div class="line">-rwxrwxrwx 1 root root     61  4월 12 00:56 README.FIPS</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:56 VMS</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:56 apps</div><div class="line">-rwxrwxrwx 1 root root   1687  4월 12 00:56 appveyor.yml</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:56 boringssl</div><div class="line">-rwxrwxrwx 1 root root   3880  4월 12 00:56 build.info</div><div class="line">-rwxrwxrwx 1 root root  28957  4월 12 00:56 config</div><div class="line">-rwxrwxrwx 1 root root   2510  4월 12 00:56 config.com</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:57 crypto</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:57 demos</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:57 doc</div><div class="line">-rwxrwxrwx 1 root root   9803  4월 12 00:57 e_os.h</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:57 engines</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:57 external</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 fuzz</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 include</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 krb5</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 ms</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 os-dep</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 pyca-cryptography</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 ssl</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 <span class="built_in">test</span></div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 tools</div><div class="line">drwxrwxrwx 0 root root   4096  4월 12 00:58 util</div><div class="line">$</div></pre></td></tr></table></figure></p>
+<p>위키 내용을 보면, <code>./Configure LIST</code> 명령어로,<br>openssl 빌드가 지원되는 플랫폼인지 확인해보라고 하는 것 같은데,<br>현재 Windows 10 + WSL 환경이 지원될지는 잘 모르겠네요.</p>
+<p>그냥, 일단 <code>./config</code>를 실행해 봅니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$ ./config</div><div class="line">Operating system: x86_64-whatever-linux2</div><div class="line">Configuring OpenSSL version 1.1.1-pre5-dev (0x10101005L) <span class="keyword">for</span> linux-x86_64</div><div class="line">Using os-specific seed configuration</div><div class="line">Creating configdata.pm</div><div class="line">Creating Makefile</div><div class="line"></div><div class="line">**********************************************************************</div><div class="line">***                                                                ***</div><div class="line">***   If you want to report a building issue, please include the   ***</div><div class="line">***   output from this <span class="built_in">command</span>:                                    ***</div><div class="line">***                                                                ***</div><div class="line">***     perl configdata.pm --dump                                  ***</div><div class="line">***                                                                ***</div><div class="line">**********************************************************************</div><div class="line">$</div></pre></td></tr></table></figure></p>
+<p>일단 <code>x86_64-whatever-linux2</code>로 하여 Makefile 구성이 된 듯 합니다.<br>그럼 이제 <code>$ make all</code>을 해봅니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line">$ make all</div><div class="line">/usr/bin/perl <span class="string">"-I."</span> -Mconfigdata <span class="string">"util/dofile.pl"</span> \</div><div class="line">    <span class="string">"-oMakefile"</span> crypto/include/internal/bn_conf.h.in &gt; crypto/include/internal/bn_conf.h</div><div class="line">/usr/bin/perl <span class="string">"-I."</span> -Mconfigdata <span class="string">"util/dofile.pl"</span> \</div><div class="line">    <span class="string">"-oMakefile"</span> crypto/include/internal/dso_conf.h.in &gt; crypto/include/internal/dso_conf.h</div><div class="line">/usr/bin/perl <span class="string">"-I."</span> -Mconfigdata <span class="string">"util/dofile.pl"</span> \</div><div class="line">    <span class="string">"-oMakefile"</span> include/openssl/opensslconf.h.in &gt; include/openssl/opensslconf.h</div><div class="line">make depend &amp;&amp; make _all</div><div class="line"></div><div class="line">...&#123;생략&#125;...</div><div class="line"></div><div class="line">/usr/bin/perl <span class="string">"-I."</span> -Mconfigdata <span class="string">"util/dofile.pl"</span> \</div><div class="line">    <span class="string">"-oMakefile"</span> util/shlib_wrap.sh.in &gt; <span class="string">"util/shlib_wrap.sh"</span></div><div class="line">chmod a+x util/shlib_wrap.sh</div><div class="line">make[1]: Leaving directory <span class="string">'/mnt/d/data/study/security.openssl/openssl'</span></div><div class="line">$</div><div class="line">$ ll</div><div class="line">합계 6585501</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 01:16 ./</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:55 ../</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:58 .git/</div><div class="line">-rwxrwxrwx 1 root root      50  4월 12 00:56 .gitattributes*</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:56 .github/</div><div class="line">-rwxrwxrwx 1 root root    2948  4월 12 00:56 .gitignore*</div><div class="line">-rwxrwxrwx 1 root root     270  4월 12 00:56 .gitmodules*</div><div class="line">-rwxrwxrwx 1 root root     256  4월 12 00:56 .travis-apt-pin.preferences*</div><div class="line">-rwxrwxrwx 1 root root     257  4월 12 00:56 .travis-create-release.sh*</div><div class="line">-rwxrwxrwx 1 root root    8719  4월 12 00:56 .travis.yml*</div><div class="line">-rwxrwxrwx 1 root root      87  4월 12 00:56 ACKNOWLEDGEMENTS*</div><div class="line">-rwxrwxrwx 1 root root     362  4월 12 00:56 AUTHORS*</div><div class="line">-rwxrwxrwx 1 root root  561654  4월 12 00:56 CHANGES*</div><div class="line">-rwxrwxrwx 1 root root    2644  4월 12 00:56 CONTRIBUTING*</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:56 Configurations/</div><div class="line">-rwxrwxrwx 1 root root  114711  4월 12 00:56 Configure*</div><div class="line">-rwxrwxrwx 1 root root      84  4월 12 00:56 FAQ*</div><div class="line">-rwxrwxrwx 1 root root   53177  4월 12 00:56 INSTALL*</div><div class="line">-rwxrwxrwx 1 root root    6128  4월 12 00:56 LICENSE*</div><div class="line">-rwxrwxrwx 1 root root  563062  4월 12 01:03 Makefile*</div><div class="line">-rwxrwxrwx 1 root root   38645  4월 12 00:56 NEWS*</div><div class="line">-rwxrwxrwx 1 root root    3226  4월 12 00:56 NOTES.ANDROID*</div><div class="line">-rwxrwxrwx 1 root root    2095  4월 12 00:56 NOTES.DJGPP*</div><div class="line">-rwxrwxrwx 1 root root    4580  4월 12 00:56 NOTES.PERL*</div><div class="line">-rwxrwxrwx 1 root root    1804  4월 12 00:56 NOTES.UNIX*</div><div class="line">-rwxrwxrwx 1 root root    3659  4월 12 00:56 NOTES.VMS*</div><div class="line">-rwxrwxrwx 1 root root    6912  4월 12 00:56 NOTES.WIN*</div><div class="line">-rwxrwxrwx 1 root root    3154  4월 12 00:56 README*</div><div class="line">-rwxrwxrwx 1 root root    3552  4월 12 00:56 README.ECC*</div><div class="line">-rwxrwxrwx 1 root root   16069  4월 12 00:56 README.ENGINE*</div><div class="line">-rwxrwxrwx 1 root root      61  4월 12 00:56 README.FIPS*</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:56 VMS/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 01:19 apps/</div><div class="line">-rwxrwxrwx 1 root root    1687  4월 12 00:56 appveyor.yml*</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:56 boringssl/</div><div class="line">-rwxrwxrwx 1 root root    3880  4월 12 00:56 build.info*</div><div class="line">-rwxrwxrwx 1 root root   28957  4월 12 00:56 config*</div><div class="line">-rwxrwxrwx 1 root root    2510  4월 12 00:56 config.com*</div><div class="line">-rwxrwxrwx 1 root root  453026  4월 12 01:03 configdata.pm*</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 01:15 crypto/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:57 demos/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:57 doc/</div><div class="line">-rwxrwxrwx 1 root root    9803  4월 12 00:57 e_os.h*</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 01:16 engines/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:57 external/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 01:17 fuzz/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:58 include/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:58 krb5/</div><div class="line">-rwxrwxrwx 1 root root 5678900  4월 12 01:15 libcrypto.a*</div><div class="line">-rwxrwxrwx 1 root root  124979  4월 12 01:16 libcrypto.map*</div><div class="line">-rwxrwxrwx 1 root root     299  4월 12 01:16 libcrypto.pc*</div><div class="line">lrwxrwxrwx 1 root root      16  4월 12 01:16 libcrypto.so -&gt; libcrypto.so.1.1*</div><div class="line">-rwxrwxrwx 1 root root 3364368  4월 12 01:16 libcrypto.so.1.1*</div><div class="line">-rwxrwxrwx 1 root root 1026948  4월 12 01:16 libssl.a*</div><div class="line">-rwxrwxrwx 1 root root   15587  4월 12 01:16 libssl.map*</div><div class="line">-rwxrwxrwx 1 root root     278  4월 12 01:16 libssl.pc*</div><div class="line">lrwxrwxrwx 1 root root      13  4월 12 01:16 libssl.so -&gt; libssl.so.1.1*</div><div class="line">-rwxrwxrwx 1 root root  684008  4월 12 01:16 libssl.so.1.1*</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:58 ms/</div><div class="line">-rwxrwxrwx 1 root root     232  4월 12 01:16 openssl.pc*</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:58 os-dep/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 00:58 pyca-cryptography/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 01:16 ssl/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 01:19 <span class="built_in">test</span>/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 01:19 tools/</div><div class="line">drwxrwxrwx 0 root root    4096  4월 12 01:19 util/</div><div class="line">$</div></pre></td></tr></table></figure></p>
+<p>별 탈없이, 잘 되네요.</p>
+<p>이제 libssl.so를 사용하여 간단한 프로그램 작성할 수 있는지 확인해 보겠습니다.</p>
+<p>아래 링크의 예제 코드 중 openssl API 하나를 실행해 보는 간단한 프로그램을 작성합니다.<br><a href="https://wiki.openssl.org/index.php/SSL/TLS_Client" target="_blank" rel="external">https://wiki.openssl.org/index.php/SSL/TLS_Client</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// file name : tc.c</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;openssl/ssl.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span></div><div class="line">&#123;</div><div class="line">   	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, SSL_library_init());</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>include 파일은 현재 openssl 디렉토리 내 include path로 지정해야 하고,<br>사용할 library들도 현재 openssl 디렉토리 내에 빌드된 libssl.so와 libcrypto.so를 사용해야 하므로,<br>gcc 옵션을 아래와 같이 주어 빌드합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ gcc -o tc tc.c -I./include -L. -lssl -lcrypto</div><div class="line">$</div><div class="line">$ ./tc</div><div class="line">./tc: error <span class="keyword">while</span> loading shared libraries: libssl.so.1.1: cannot open shared object file: No such file or directory</div><div class="line">$</div></pre></td></tr></table></figure>
+<p>그러나 에러가 나네요. ldd로 확인해 보면, libssl library를 못 찾고 있습니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ ldd ./tc</div><div class="line">        linux-vdso.so.1 =&gt;  (0x00007fffd3973000)</div><div class="line">        libssl.so.1.1 =&gt; not found</div><div class="line">        libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f0f654a0000)</div><div class="line">        /lib64/ld-linux-x86-64.so.2 (0x00007f0f65a00000)</div><div class="line">$</div></pre></td></tr></table></figure></p>
+<p><code>LD_LIBRARY_PATH</code> 환경변수를 이용하여 libssl.so, libcrypto.so 위치를 알려주면서 실행해 봅니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ LD_LIBRARY_PATH=. ldd ./tc</div><div class="line">        linux-vdso.so.1 =&gt;  (0x00007ffffa28f000)</div><div class="line">        libssl.so.1.1 =&gt; ./libssl.so.1.1 (0x00007faee64f0000)</div><div class="line">        libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007faee6110000)</div><div class="line">        libcrypto.so.1.1 =&gt; ./libcrypto.so.1.1 (0x00007faee5c10000)</div><div class="line">        libpthread.so.0 =&gt; /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007faee59f0000)</div><div class="line">        /lib64/ld-linux-x86-64.so.2 (0x00007faee6800000)</div><div class="line">        libdl.so.2 =&gt; /lib/x86_64-linux-gnu/libdl.so.2 (0x00007faee57e0000)</div></pre></td></tr></table></figure></p>
+<p>이제 libssl.so, libcrypt.so를 잘 찾고, 잘 실행되네요.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ LD_LIBRARY_PATH=. ./tc</div><div class="line">1</div><div class="line">$</div></pre></td></tr></table></figure></p>
+<p>그럼 이제 <code>tc.c</code> 파일에서 사용했던 API인 <code>SSL_library_init</code> 소스코드를 수정해봅니다.<br>먼저 해당 API가 어느 소스코드 파일에서 정의되어 있는지 찾아봅니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ grep -rn SSL_library_init .</div><div class="line">...&#123;생략&#125;...</div><div class="line">./include/openssl/ssl.h:1085:<span class="comment"># define OpenSSL_add_ssl_algorithms()    SSL_library_init()</span></div><div class="line">./include/openssl/ssl.h:1087:<span class="comment">#  define SSLeay_add_ssl_algorithms()    SSL_library_init()</span></div><div class="line">./include/openssl/ssl.h:1913:<span class="comment"># define SSL_library_init() OPENSSL_init_ssl(0, NULL)</span></div><div class="line">./ssl/ssl_init.c:47:     * application only calls SSL_library_init().</div><div class="line">...&#123;생략&#125;...</div></pre></td></tr></table></figure></p>
+<p><code>SSL_library_init()</code>는 <code>OPENSSL_init_ssl(0, NULL)</code>에 대한 macro 였군요.<br><code>OPENSSL_init_ssl</code>로 다시 찾아봅니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ grep -rn OPENSSL_init_ssl .</div><div class="line">...&#123;생략&#125;...</div><div class="line">./include/openssl/ssl.h:2311:int OPENSSL_init_ssl(uint64_t opts, const OPENSSL_INIT_SETTINGS *settings);</div><div class="line">...&#123;생략&#125;...</div><div class="line">./ssl/ssl_init.c:180:int OPENSSL_init_ssl(uint64_t opts, const OPENSSL_INIT_SETTINGS * settings)</div><div class="line">...&#123;생략&#125;...</div></pre></td></tr></table></figure></p>
+<p><code>./ssl/ssl_init.c</code>에 정의되어 있군요. 이제 그 위치로 가서 고쳐봅니다.<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ vi ./ssl/ssl_init.c</div><div class="line">...[생략]...</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">OPENSSL_init_ssl</span><span class="params">(<span class="keyword">uint64_t</span> opts, <span class="keyword">const</span> OPENSSL_INIT_SETTINGS * settings)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">10</span>;						&lt;== 그냥 <span class="number">10</span>을 <span class="keyword">return</span> 하도록 고칩니다.</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> stoperrset = <span class="number">0</span>;</div><div class="line">...[생략]...</div></pre></td></tr></table></figure></p>
+<p>다시 openssl을 빌드합니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ make clean; make all</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>빌드할 때마다 오래 걸려서, 이렇게 분석하는게 생산적으로 보이지는 않네요.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://junoya77.github.io/2018/04/12/openssl-분석을-위한-환경-갖추기/" data-id="cjfvdkpev000bfwvkxsu9w2vn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" class="article-date">
@@ -128,7 +195,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" data-id="cjfv9k2s80007l8vktxr7tbdz" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" data-id="cjfvdkph30012fwvk2v6z68aj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -185,7 +252,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2018/01/30/unity-animation-keyword/" data-id="cjfv9k2t9000yl8vklbpq62xd" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2018/01/30/unity-animation-keyword/" data-id="cjfvdkpha0015fwvke1ocmo8a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -252,7 +319,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/12/23/what-is-ethereum/" data-id="cjfv9k2t5000wl8vkp8521gck" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/12/23/what-is-ethereum/" data-id="cjfvdkph10011fwvkgxsht43p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -309,7 +376,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/28/torrent-tracker와의-protocol-분석해-보기-수정중/" data-id="cjfv9k2t3000ul8vkmi6xdzt3" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/28/torrent-tracker와의-protocol-분석해-보기-수정중/" data-id="cjfvdkpfv000rfwvk83r71ev1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -355,7 +422,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/28/torrent-file-parsing-코드-분석-작성해-보기-수정중/" data-id="cjfv9k2sy000ql8vkwy2h6eoy" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/28/torrent-file-parsing-코드-분석-작성해-보기-수정중/" data-id="cjfvdkpg1000tfwvkg4t75utj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -418,7 +485,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjfv9k2sm000gl8vkrixcf7ic" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjfvdkpf3000gfwvkp8s7pfm5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -501,7 +568,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjfv9k2sk000dl8vkxwsbxc95" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjfvdkpfh000lfwvkd7o19fqy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -557,7 +624,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/이글루에서-다시-github-io로-돌아옴/" data-id="cjfv9k2tb0010l8vkuwus1ced" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/이글루에서-다시-github-io로-돌아옴/" data-id="cjfvdkph50013fwvk2kw4k591" class="article-share-link">Share</a>
       
       
     </footer>
@@ -645,64 +712,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/anaconda-사용법-간단히-익혀보기/" data-id="cjfv9k2ry0004l8vkkxx7vqbc" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-install-build-fastcoll-md5-collision" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/04/install-build-fastcoll-md5-collision/" class="article-date">
-  <time datetime="2017-07-03T16:29:20.000Z" itemprop="datePublished">2017-07-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Security/">Security</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/04/install-build-fastcoll-md5-collision/">fastcoll로 md5 collision 해보기</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><code>fastcoll</code> 소스코드를 내려받습니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ wget http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5-1_source.zip</div></pre></td></tr></table></figure>
-<p>zip 파일의 압축을 풉니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ unzip fastcoll_v1.0.0.5-1_source.zip</div></pre></td></tr></table></figure>
-<p><code>fastcoll</code> build에 필요한 <code>libboost-all-dev</code> package를 설치합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libboost-all-dev</div></pre></td></tr></table></figure>
-<p><code>fastcoll</code> 소스코드를 빌드합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ g++ -O3 *.cpp -lboost_filesystem -lboost_program_options -lboost_system -o fastcoll</div></pre></td></tr></table></figure>
-<p>이제 <code>fastcoll</code>로 md5 collision이 발생하는 2개의 파일 test1, test2를 생성해 봅니다.</p>
-<ul>
-<li>md5 collision : 서로 다른 내용의 2개의 파일이 md5 hash 값이 동일한 상황이 발생</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ./fastcoll -o test1 test2</div><div class="line">MD5 collision generator v1.5</div><div class="line">by Marc Stevens (http://www.win.tue.nl/hashclash/)</div><div class="line"></div><div class="line">Using output filenames: <span class="string">'test1'</span> and <span class="string">'test2'</span></div><div class="line">Using initial value: 0123456789abcdeffedcba9876543210</div><div class="line"></div><div class="line">Generating first block: .</div><div class="line">Generating second block: S01....</div><div class="line">Running time: 0.08306 s</div><div class="line">$</div></pre></td></tr></table></figure>
-<p><code>fastcoll</code>로 생성한 2개의 파일 내용을 비교해 보면 서로 내용에 차이가 있음을 알 수 있습니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cmp -l test1 test2 | wc</div><div class="line">      6      18      72</div><div class="line">$</div></pre></td></tr></table></figure>
-<p>그러나 md5 hash 값은 동일합니다.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ md5sum test1 test2</div><div class="line">d4f4cbd8699701aded1dca2972d950d8  test1</div><div class="line">d4f4cbd8699701aded1dca2972d950d8  test2</div><div class="line">$</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/07/04/install-build-fastcoll-md5-collision/" data-id="cjfv9k2sc0009l8vkyrusmdq1" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/anaconda-사용법-간단히-익혀보기/" data-id="cjfvdkpe50004fwvkcqh7cuul" class="article-share-link">Share</a>
       
       
     </footer>
@@ -725,7 +735,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/">CS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DS-ML/">DS/ML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/">CS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DS-ML/">DS/ML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -735,7 +745,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -746,6 +756,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/04/12/openssl-분석을-위한-환경-갖추기/">openssl 분석을 위한 환경 갖추기</a>
+          </li>
         
           <li>
             <a href="/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/">hexo deploy error,fatal: could not read Username for &#39;https://github.com&#39;</a>
@@ -761,10 +775,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2017/11/28/torrent-tracker와의-protocol-분석해-보기-수정중/">torrent tracker와의 protocol 분석해 보기 (수정중)</a>
-          </li>
-        
-          <li>
-            <a href="/2017/11/28/torrent-file-parsing-코드-분석-작성해-보기-수정중/">torrent file parsing 코드 분석/작성해 보기 (수정중)</a>
           </li>
         
       </ul>
