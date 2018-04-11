@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/index.html">
 <meta property="og:site_name" content="학습노트">
 <meta property="og:description" content="오랜만 $ hexo generate; hex deploy를 해보니,아래와 같은 갑작스러운 에러가 발생했습니다. 12345678910111213141516171819202122...&amp;#123;생략&amp;#125;...fatal: HttpRequestException encountered.   ▒▒ ▒▒û▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒ ▒߻▒▒߽▒▒ϴ▒.ba">
-<meta property="og:updated_time" content="2018-04-11T14:58:36.301Z">
+<meta property="og:updated_time" content="2018-04-11T15:05:48.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo deploy error,fatal: could not read Username for &#39;https:&#x2F;&#x2F;github.com&#39;">
 <meta name="twitter:description" content="오랜만 $ hexo generate; hex deploy를 해보니,아래와 같은 갑작스러운 에러가 발생했습니다. 12345678910111213141516171819202122...&amp;#123;생략&amp;#125;...fatal: HttpRequestException encountered.   ▒▒ ▒▒û▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒ ▒߻▒▒߽▒▒ϴ▒.ba">
@@ -114,11 +114,16 @@ ga('send', 'pageview');
 <ul>
 <li>참고<br><a href="https://git-scm.com/docs/git-config" target="_blank" rel="external">https://git-scm.com/docs/git-config</a><br><a href="https://stackoverflow.com/questions/38333752/trying-to-understand-wincred-with-git-for-windows-confused?utm_medium=organic&amp;utm_source=google_rich_qa&amp;utm_campaign=google_rich_qa" target="_blank" rel="external">https://stackoverflow.com/questions/38333752/trying-to-understand-wincred-with-git-for-windows-confused?utm_medium=organic&amp;utm_source=google_rich_qa&amp;utm_campaign=google_rich_qa</a></li>
 </ul>
+<p>단지 이런 수정이 위 문제를 해결한 건지를 확인하기 위해,<br><code>~/.gitconfig</code> 파일 내 아래와 같이 “credential” 부분을 삭제해 보았습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ vi ~/.gitconfig</div><div class="line">...&#123;생략&#125;...</div><div class="line"></div><div class="line">[credential]			=&gt; 삭제</div><div class="line">	helper = wincred 	=&gt; 삭제</div></pre></td></tr></table></figure>
+<p>그리고나서 다시 <code>$ hexo deploy</code>를 실행한 결과, 다시 에러가 발생함을 확인할 수 있었습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">...&#123;생략&#125;...</div><div class="line"></div><div class="line">fatal: HttpRequestException encountered.</div><div class="line">   ▒▒ ▒▒û▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒ ▒߻▒▒߽▒▒ϴ▒.</div><div class="line">bash: /dev/tty: No such device or address</div><div class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</div><div class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">'https://github.com'</span>: No error</div><div class="line">FATAL Something<span class="string">'s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></div><div class="line">Error: fatal: HttpRequestException encountered.</div><div class="line">   �� ��û�� ������ ���� ������ �߻��߽��ϴ�.</div><div class="line">bash: /dev/tty: No such device or address</div><div class="line">error: failed to execute prompt script (exit code 1)</div><div class="line">fatal: could not read Username for 'https://github.com<span class="string">': No error</span></div><div class="line"></div><div class="line">    at ChildProcess.&lt;anonymous&gt; (D:\data\blog\node_modules\hexo-util\lib\spawn.js:37:17)</div><div class="line">    at emitTwo (events.js:106:13)</div><div class="line">    at ChildProcess.emit (events.js:191:7)</div><div class="line">    at ChildProcess.cp.emit (D:\data\blog\node_modules\cross-spawn\lib\enoent.js:40:29)</div><div class="line">    at maybeClose (internal/child_process.js:891:16)</div><div class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)</div><div class="line"></div><div class="line">$</div></pre></td></tr></table></figure>
+<p>다시 <code>$ git config --global credential.helper wincred</code>를 실행하여 <code>~/.gitconfig</code> 파일에<br>credential 설정을 복원시키니 <code>hexo deploy</code>가 정상 동작하였습니다.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" data-id="cjfv856by0009d8vktzadwugx" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" data-id="cjfv893xe00059ovkxchactxv" class="article-share-link">Share</a>
       
       
     </footer>
