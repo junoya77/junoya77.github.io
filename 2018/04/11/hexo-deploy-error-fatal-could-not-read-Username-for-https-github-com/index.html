@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hexo deploy error,fatal: could not read Username for &#39;https://github.com&#39; | 학습노트</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="오랜만 $ hexo generate; hex deploy를 해보니,아래와 같은 갑작스러운 에러가 발생했습니다. 12345678910111213141516171819202122...&amp;#123;생략&amp;#125;...fatal: HttpRequestException encountered.   ▒▒ ▒▒û▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒ ▒߻▒▒߽▒▒ϴ▒.ba">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo deploy error,fatal: could not read Username for &#39;https:&#x2F;&#x2F;github.com&#39;">
+<meta property="og:url" content="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/index.html">
+<meta property="og:site_name" content="학습노트">
+<meta property="og:description" content="오랜만 $ hexo generate; hex deploy를 해보니,아래와 같은 갑작스러운 에러가 발생했습니다. 12345678910111213141516171819202122...&amp;#123;생략&amp;#125;...fatal: HttpRequestException encountered.   ▒▒ ▒▒û▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒ ▒߻▒▒߽▒▒ϴ▒.ba">
+<meta property="og:updated_time" content="2018-04-11T14:56:19.965Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo deploy error,fatal: could not read Username for &#39;https:&#x2F;&#x2F;github.com&#39;">
+<meta name="twitter:description" content="오랜만 $ hexo generate; hex deploy를 해보니,아래와 같은 갑작스러운 에러가 발생했습니다. 12345678910111213141516171819202122...&amp;#123;생략&amp;#125;...fatal: HttpRequestException encountered.   ▒▒ ▒▒û▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒ ▒߻▒▒߽▒▒ϴ▒.ba">
+  
+    <link rel="alternate" href="/atom.xml" title="학습노트" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-4649754-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">학습노트</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://junoya77.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" class="article-date">
+  <time datetime="2018-04-11T14:36:58.000Z" itemprop="datePublished">2018-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CS/">CS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo deploy error,fatal: could not read Username for &#39;https://github.com&#39;
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>오랜만 <code>$ hexo generate; hex deploy</code>를 해보니,<br>아래와 같은 갑작스러운 에러가 발생했습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">...&#123;생략&#125;...</div><div class="line"></div><div class="line">fatal: HttpRequestException encountered.</div><div class="line">   ▒▒ ▒▒û▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒ ▒߻▒▒߽▒▒ϴ▒.</div><div class="line">bash: /dev/tty: No such device or address</div><div class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</div><div class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">'https://github.com'</span>: No error</div><div class="line">FATAL Something<span class="string">'s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></div><div class="line">Error: fatal: HttpRequestException encountered.</div><div class="line">   �� ��û�� ������ ���� ������ �߻��߽��ϴ�.</div><div class="line">bash: /dev/tty: No such device or address</div><div class="line">error: failed to execute prompt script (exit code 1)</div><div class="line">fatal: could not read Username for 'https://github.com<span class="string">': No error</span></div><div class="line"></div><div class="line">    at ChildProcess.&lt;anonymous&gt; (D:\data\blog\node_modules\hexo-util\lib\spawn.js:37:17)</div><div class="line">    at emitTwo (events.js:106:13)</div><div class="line">    at ChildProcess.emit (events.js:191:7)</div><div class="line">    at ChildProcess.cp.emit (D:\data\blog\node_modules\cross-spawn\lib\enoent.js:40:29)</div><div class="line">    at maybeClose (internal/child_process.js:891:16)</div><div class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)</div><div class="line"></div><div class="line">$</div></pre></td></tr></table></figure>
+<p><code>fatal: could not read Username for</code> 키워드로 구글링을 해보니,<br>아래와 같은 링크들을 검색되었고,<br><a href="https://github.com/hexojs/hexo-deployer-git/issues/71" target="_blank" rel="external">https://github.com/hexojs/hexo-deployer-git/issues/71</a><br><a href="https://hanumoka.github.io/2018/03/29/error-hexo-deploy/" target="_blank" rel="external">https://hanumoka.github.io/2018/03/29/error-hexo-deploy/</a></p>
+<p>github.com 대상 ssh 접속 환경 설정 및 <code>_config.yml</code> 설정파일 수정이 필요하다는 내용이었습니다.</p>
+<p>그러나, 이전에 잘 되던 것이 갑자기 안되는 것이 이상한데,<br>너무 많은 수정이 발생하는 것 같아,<br>좀 더 간단한 솔루션이 없는 지 추가로 구글링 하다보니,<br>아래 링크를 발견했습니다.<br><a href="https://github.com/hexojs/hexo/issues/3052" target="_blank" rel="external">https://github.com/hexojs/hexo/issues/3052</a></p>
+<p>여기서는, 아래와 같이 한 줄의 command 실행으로 해결된다고 하여<br>그대로 해 보았더니, 정말 해결되어 <code>$ hexo deploy</code>가 정상 동작하였습니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global credential.helper wincred</div></pre></td></tr></table></figure></p>
+<p><code>git config</code>는 git 관련 옵션을 설정하겠다는 의미이고,</p>
+<p><code>--global</code>은 <code>~/.gitconfig</code> 설정파일에 대한 read/write를 하겠다라는 의미이고, </p>
+<p><code>credential.helper</code>는 username/password credential이 필요한 경우<br>이를 지원하기 위해 호출될 <code>helper</code>를 지정하는 옵션으로,<br><code>wincred</code>로 지정한 것은, windows credential manager를 사용하겠다는 의미입니다.</p>
+<ul>
+<li>참고<br><a href="https://git-scm.com/docs/git-config" target="_blank" rel="external">https://git-scm.com/docs/git-config</a><br><a href="https://stackoverflow.com/questions/38333752/trying-to-understand-wincred-with-git-for-windows-confused?utm_medium=organic&amp;utm_source=google_rich_qa&amp;utm_campaign=google_rich_qa" target="_blank" rel="external">https://stackoverflow.com/questions/38333752/trying-to-understand-wincred-with-git-for-windows-confused?utm_medium=organic&amp;utm_source=google_rich_qa&amp;utm_campaign=google_rich_qa</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" data-id="cjfv7x9lx0007jwvkgbficuy0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/30/unity-animation-keyword/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[unity] 2D, 초간단 게임 만들기 (수정중)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CS/">CS</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DS-ML/">DS/ML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/">hexo deploy error,fatal: could not read Username for &#39;https://github.com&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/30/unity-animation-keyword/">[unity] 2D, 초간단 게임 만들기 (수정중)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/23/what-is-ethereum/">what is ethereum?</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/28/torrent-tracker와의-protocol-분석해-보기-수정중/">torrent tracker와의 protocol 분석해 보기 (수정중)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/28/torrent-file-parsing-코드-분석-작성해-보기-수정중/">torrent file parsing 코드 분석/작성해 보기 (수정중)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Junho Lee<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
