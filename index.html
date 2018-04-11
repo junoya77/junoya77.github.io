@@ -102,7 +102,7 @@ ga('send', 'pageview');
       
         <p>오랜만에 <code>$ hexo generate; hex deploy</code>를 해보니,<br>아래와 같은 갑작스러운 에러가 발생했습니다.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">...&#123;생략&#125;...</div><div class="line"></div><div class="line">fatal: HttpRequestException encountered.</div><div class="line">   ▒▒ ▒▒û▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒ ▒߻▒▒߽▒▒ϴ▒.</div><div class="line">bash: /dev/tty: No such device or address</div><div class="line">error: failed to execute prompt script (<span class="built_in">exit</span> code 1)</div><div class="line">fatal: could not <span class="built_in">read</span> Username <span class="keyword">for</span> <span class="string">'https://github.com'</span>: No error</div><div class="line">FATAL Something<span class="string">'s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span></div><div class="line">Error: fatal: HttpRequestException encountered.</div><div class="line">   �� ��û�� ������ ���� ������ �߻��߽��ϴ�.</div><div class="line">bash: /dev/tty: No such device or address</div><div class="line">error: failed to execute prompt script (exit code 1)</div><div class="line">fatal: could not read Username for 'https://github.com<span class="string">': No error</span></div><div class="line"></div><div class="line">    at ChildProcess.&lt;anonymous&gt; (D:\data\blog\node_modules\hexo-util\lib\spawn.js:37:17)</div><div class="line">    at emitTwo (events.js:106:13)</div><div class="line">    at ChildProcess.emit (events.js:191:7)</div><div class="line">    at ChildProcess.cp.emit (D:\data\blog\node_modules\cross-spawn\lib\enoent.js:40:29)</div><div class="line">    at maybeClose (internal/child_process.js:891:16)</div><div class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)</div><div class="line"></div><div class="line">$</div></pre></td></tr></table></figure>
-<p><code>fatal: could not read Username for</code> 키워드로 구글링을 해보니,<br>아래와 같은 링크들을 검색되었고,<br><a href="https://github.com/hexojs/hexo-deployer-git/issues/71" target="_blank" rel="external">https://github.com/hexojs/hexo-deployer-git/issues/71</a><br><a href="https://hanumoka.github.io/2018/03/29/error-hexo-deploy/" target="_blank" rel="external">https://hanumoka.github.io/2018/03/29/error-hexo-deploy/</a></p>
+<p><code>fatal: could not read Username for</code> 키워드로 구글링을 해보니,<br>아래와 같은 링크들이 검색되었고,<br><a href="https://github.com/hexojs/hexo-deployer-git/issues/71" target="_blank" rel="external">https://github.com/hexojs/hexo-deployer-git/issues/71</a><br><a href="https://hanumoka.github.io/2018/03/29/error-hexo-deploy/" target="_blank" rel="external">https://hanumoka.github.io/2018/03/29/error-hexo-deploy/</a></p>
 <p>github.com 대상 ssh 접속 환경 설정 및 <code>_config.yml</code> 설정파일 수정이 필요하다는 내용이었습니다.</p>
 <p>그러나, 이전에 잘 되던 것이 갑자기 안되는 것이 이상한데다,<br>ssh로 세팅하는 건 너무 많은(또는 귀찮은) 작업이 발생하는 것 같아,<br>좀 더 간단한 솔루션이 없는 지 추가로 구글링 하다보니, 아래 링크를 발견했습니다.<br><a href="https://github.com/hexojs/hexo/issues/3052" target="_blank" rel="external">https://github.com/hexojs/hexo/issues/3052</a></p>
 <p>여기서는, 아래와 같이 한 줄의 command 실행으로 해결된다고 하여<br>그대로 해 보았더니, 정말 해결되어 <code>$ hexo deploy</code>가 정상 동작하였습니다.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global credential.helper wincred</div></pre></td></tr></table></figure></p>
@@ -121,7 +121,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" data-id="cjfv89xzw000978vkjns3aq7w" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2018/04/11/hexo-deploy-error-fatal-could-not-read-Username-for-https-github-com/" data-id="cjfv8am510005y0vkljzslnoe" class="article-share-link">Share</a>
       
       
     </footer>
@@ -178,7 +178,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2018/01/30/unity-animation-keyword/" data-id="cjfv89y0o000u78vkrfgrygd1" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2018/01/30/unity-animation-keyword/" data-id="cjfv8am5w000ty0vka098iy9c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -245,7 +245,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/12/23/what-is-ethereum/" data-id="cjfv89y0p000w78vkue1zv3qh" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/12/23/what-is-ethereum/" data-id="cjfv8am60000yy0vkk7qqwld3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -302,7 +302,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/28/torrent-tracker와의-protocol-분석해-보기-수정중/" data-id="cjfv89y0m000s78vk7xow05tg" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/28/torrent-tracker와의-protocol-분석해-보기-수정중/" data-id="cjfv8am5x000vy0vkfekqnqwy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -348,7 +348,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/28/torrent-file-parsing-코드-분석-작성해-보기-수정중/" data-id="cjfv89y0j000q78vkc9rumnvk" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/28/torrent-file-parsing-코드-분석-작성해-보기-수정중/" data-id="cjfv8am5t000ry0vk4qplbmed" class="article-share-link">Share</a>
       
       
     </footer>
@@ -411,7 +411,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjfv89y06000e78vkk2eihhdm" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-get-dummites-와-one-hot-encoding-차이점/" data-id="cjfv8am5e000ey0vkbqxxfdwn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -494,7 +494,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjfv89y03000c78vk4lmoka8k" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/pandas-categorical-data-type-알아보기/" data-id="cjfv8am5h000hy0vkc1svyqhp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -550,7 +550,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/이글루에서-다시-github-io로-돌아옴/" data-id="cjfv89y0s000z78vk1s0i5wvy" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/이글루에서-다시-github-io로-돌아옴/" data-id="cjfv8am620010y0vkrrculvhy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -638,7 +638,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/11/23/anaconda-사용법-간단히-익혀보기/" data-id="cjfv89xzj000378vkjzuxs73e" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/11/23/anaconda-사용법-간단히-익혀보기/" data-id="cjfv8am4t0003y0vk8wryhy1w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -695,7 +695,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://junoya77.github.io/2017/07/04/install-build-fastcoll-md5-collision/" data-id="cjfv89xzt000778vkn9ux86by" class="article-share-link">Share</a>
+      <a data-url="http://junoya77.github.io/2017/07/04/install-build-fastcoll-md5-collision/" data-id="cjfv8am4v0004y0vk94vajc33" class="article-share-link">Share</a>
       
       
     </footer>
